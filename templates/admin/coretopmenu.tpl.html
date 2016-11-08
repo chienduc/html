@@ -1,0 +1,16 @@
+{if $authUser}
+<div id="nav">
+{if $authUser}<p class="datetime">{$locale->msg('hello')} <a href="/{$aScript}?op=system&act=profile" title="{$locale->msg('system_profile')}"><strong>{$authUser->getFullname()}</strong></a> ({$authUser->getUsername()}) [{$authUser->getType()}]. [<a href="/{$aScript}?op=logout" title="{$locale->msg('log_out')}">{$locale->msg('log_out')}</a>]</p>{/if}
+<ul id="listmenu">
+<li><a href="/{$aScript}?op=dashboard" title="{$locale->msg('dash_board')}">{$locale->msg('dash_board')}</a></li>
+<li><a href="/{$aScript}?op=manage" title="{$locale->msg('manage_website')}">{$locale->msg('manage_website')}</a></li>
+<li><a href="/{$aScript}?op=system" title="{$locale->msg('system')}">{$locale->msg('system')}</a></li>
+</ul>
+</div>
+{else}
+<div id="nav">
+<ul id="listmenu">
+<li><a href="/" title="{$locale->msg('home_page')}">{$locale->msg('home_page')}</a></li>
+</ul>
+</div>
+{/if}

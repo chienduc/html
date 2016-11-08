@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.add('qrcodes',{requires:['dialog'],lang:['en','fr'],init:function(a){var b="qrcodes";var c=a.addCommand(b,new CKEDITOR.dialogCommand(b));c.modes={wysiwyg:1,source:0};c.canUndo=false;a.ui.addButton("qrcodes",{label:a.lang.qrcodes.title,command:b,icon:this.path+"qrcode.jpg"});CKEDITOR.dialog.add(b,this.path+"dialogs/qrcode.js")}});

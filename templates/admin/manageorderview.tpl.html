@@ -1,0 +1,138 @@
+{include file="$userTemplate/coreheader.tpl.html" title=site-header}
+<div id="main" class="left-content">
+{include file="$userTemplate/coreleft.tpl.html" title=site-top-menu}
+<div id="content">
+{include file="$userTemplate/corenavigation.tpl.html" title=navigation-bar}
+<div class="innerContent">
+<div id="tabContent" class="tabContent">
+<ul class="tabs">
+<li><a title="{$locale->msg('list_item')}" href="javascript:void(0);" onClick="javascript:formSubmit('formView','list','',0);">{$locale->msg('list_item')}</a></li>
+<li class="current"><a title="{$locale->msg('view_order')}" href="javascript:void(0);">{$locale->msg('view_order')}</a></li>
+<li><a title="{$locale->msg('clean_trash')}" href="javascript:void(0);">{$locale->msg('clean_trash')}</a></li>
+</ul>
+<div class="tableContent hidden"><center><img src="/{$templatePath}/{$userTemplate}/images/loading.gif" width="36" height="36" alt="Loading" /></center></div>
+<div class="tableContent">
+{if $result_code}<div class="message">{$amessages.result_code.$result_code}</div>{/if}
+{if $error_code}<div class="message2">{$amessages.error_code.$error_code}</div>{/if}
+{if $error}
+{if $error.invalid || $error.message}
+{assign var=input value=$error.INPUT}
+<div class="errorBox">
+<h2>{$locale->msg('error_notes')}:</h2>
+<ul class="listStyle">
+{foreach from=$input item=field}
+{if $field.error}<li>{$field.message}</li>{/if}
+{/foreach}
+<li>{$error.message}</li>
+</ul>
+</div>
+{/if}
+{/if}
+<div class="formView">
+{if $item}
+<!-- Load order info -->
+<form action="/{$aScript}" method="post" name="formView" id="formView" enctype="multipart/form-data" >
+<fieldset>
+<h1>{$locale->msg('manage_order')}: {$item->getId()}</h1>
+<p><label>{$locale->msg('date_order')}:</label>{$item->getDateCreated()}</p>
+<p><label>{$locale->msg('date_order_update')}:</label> {$item->getLastUpdated()}</p>
+<p><label>{$locale->msg('status_order')}:</label><strong> {$item->getStatusTextBackend()}</strong></p>
+<div class="infoCustomer">
+	<h3>{$locale->msg('buyer_info')}</h3>
+	<p><label>{$locale->msg('fullname')}: </label>{$item->getName()}</p>
+	{if $item->getAddress()}<p><label>{$locale->msg('address')}: </label>{$item->getAddress()}</p>{/if}
+	{if $item->getOrderProvince()}<p><label>{$locale->msg('provinces')}: </label>{$item->getOrderProvince()}</p>{/if}
+	<p><label>{$locale->msg('email_add')}: </label>{$item->getEmail()}</p>
+	{if $item->getCell()}<p><label>{$locale->msg('telephone')}: </label>{$item->getTel()}</p>{/if}
+	{if $item->getTel()}<p><label>{$locale->msg('cell')}: </label>{$item->getCell()}</p>{/if}
+	<h3>{$locale->msg('recipient')}</h3>
+	<p><label>{$locale->msg('fullname')}: </label>{$item->getRName()}</p>
+	<p><label>{$locale->msg('address')}: </label>{$item->getRAddress()}</p>
+	{if $item->getOrderRProvince()}<p><label>{$locale->msg('provinces')}: </label>{$item->getOrderRProvince()}</p>{/if}
+	{if $item->getRCell()}<p><label>{$locale->msg('telephone')}: </label>{$item->getRTel()}</p>{/if}
+	{if $item->getRTel()}<p><label>{$locale->msg('cell')}: </label>{$item->getRCell()}</p>{/if}
+	{assign var=rnote value=$item->getProperty('rnote')}
+	{if $rnote}<p><label>{$locale->msg('addon_description')}: </label>{$rnote}</p>{/if}
+	<h3>{$locale->msg(delivery_info)}</h3>
+	<p><label>{$locale->msg(delivery_date)}: </label>{$item->getRDate()}</p>
+	<!--<p><label>Thời gian giao hàng : </label>{$item->getProperty('rtime')}</p>-->
+	{if $item->getRNote()}<p><label>{$locale->msg('addon_description')}: </label>{$item->getRNote()}</p>{/if}
+</div>
+<div class="infoOrder">
+	<h3>{$locale->msg('bill_info')}</h3>
+	{if $listProducs}
+	<table><tr >
+	<td>{$locale->msg('product_name')}</td>
+	<td>{$locale->msg('quantity')}</td>
+	<td class="right">{$locale->msg('price')} ({$estore->getProperty('currency')})</td>
+	<td class="right">{$locale->msg('total_price')} ({$estore->getProperty('currency')})</td>
+	</tr>
+	{assign var=costFrice value=$item->getOrderCost()}
+	{foreach from=$listProducs item=itemOrder}
+	{assign var=totalPrice value=$itemOrder->getQuantity()*$itemOrder->getPrice()}
+	<tr>
+	<td>{$itemOrder->getName()}</td>
+	<td>{$itemOrder->getQuantity()}</td>
+	<td class="right">{$itemOrder->getPrice()|number_format}</td>
+	<td class="right">{$totalPrice|number_format}</td>
+	</tr>
+	{/foreach}
+	</table>
+	<p>{$locale->msg('total_bill')}:<strong style=" float:right; margin-right:16px">{$costFrice.grandTotal|number_format:2} {$estore->getProperty('currency')}</strong></p>
+	<p>{$locale->msg('order_vat')}:<strong style=" float:right; margin-right:16px">{$costFrice.vatFrice|number_format:2} {$estore->getProperty('currency')}</strong></p>
+	<p>{$locale->msg('shipping_costs')}:<strong style=" float:right; margin-right:16px">{$costFrice.shipping|number_format:2} {$estore->getProperty('currency')}</strong></p>
+	<p>{$locale->msg('total_value_of_value')}:<strong style=" float:right; margin-right:16px">{$costFrice.subgrandTotal|number_format:2} {$estore->getProperty('currency')}</strong></p>
+	{/if}
+	
+	<h3>{$locale->msg('payment_info')}</h3>
+	{assign var=type_payment value=$item->getProperty('type_payment')}
+	{if $type_payment}<p><label>{$locale->msg('payment_type')}: </label>{$itype_payment}</p>{/if}
+	{assign var=status_payment value=$item->getProperty('status_payment')}
+	{if $status_payment}<p><label>{$locale->msg('payment_status')}: </label>{$status_payment}</p>{/if}
+	{assign var=transaction_id value=$item->getProperty('transaction_id')}
+	{if $transaction_id}<p><label>{$locale->msg('transaction_code')}: </label>{$transaction_id}</p>{/if}
+	{assign var=expiration_date value=$item->getProperty('expiration_date')}
+	{if $expiration_date}<p><label>{$locale->msg('expiration_date')}: </label>{$expiration_date}</p>{/if}
+	{assign var=address_payment value=$item->getProperty('address_payment')}
+	{if $address_payment}<p><label>{$locale->msg('address')}: </label>{$address_payment}</p>{/if}
+	{assign var=phone_payment value=$item->getProperty('phone_payment')}
+	{if $phone_payment}<p><label>{$locale->msg('address')}: </label>{$phone_payment}</p>{/if}
+</div>
+<p class="btn">
+<input type="hidden" name="op" value="manage" />
+<input type="hidden" name="act" value="order" />
+<input type="hidden" name="mod" value="view" />
+<input type="hidden" name="doo" value="submit" />
+<input type="hidden" name="sCode" value="{$sCode}_" />
+<input type="hidden" name="id" value="{$item->getId()}" />
+<input type="hidden" name="lang" value="{$lang}" />
+</p>
+</fieldset>
+</form>
+{/if}
+</div>
+</div>
+<div class="tableContent hidden">
+<div class="contType">
+<h2>{$locale->msg('notes')}:</h2>{$locale->msg('notes_clean_trash')}</div>
+<form name="formClean" id="formClean" action="/{$aScript}" method="post">
+<fieldset>
+<input type="hidden" name="op" value="manage" />
+<input type="hidden" name="act" value="order" />
+<input type="hidden" name="mod" value="list" />
+<input type="hidden" name="doo" value="cleantrash" />
+<input type="hidden" name="lang" value="{$lang}" />
+<p class="btn"><input type="submit" value="{$locale->msg('button_ok')}" title="{$locale->msg('button_ok')}" name="btnSubmit2" />
+<input type="button" onClick="javascript:formSubmit('formClean','list','cancel',0);" value="{$locale->msg('button_cancel')}" title="{$locale->msg('button_cancel')}" name="btnCancel" />
+</p>
+</fieldset>
+</form>
+</div>
+<div class="tableContent hidden"><center><img src="/{$templatePath}/{$userTemplate}/images/loading.gif" width="36" height="36" alt="Loading" /></center></div>
+<div class="tableContent hidden"><center><img src="/{$templatePath}/{$userTemplate}/images/loading.gif" width="36" height="36" alt="Loading" /></center></div>
+<div class="tableContent hidden"><center><img src="/{$templatePath}/{$userTemplate}/images/loading.gif" width="36" height="36" alt="Loading" /></center></div>
+</div>
+</div>
+</div>
+</div>
+{include file="$userTemplate/corefooter.tpl.html" title=site-footer}

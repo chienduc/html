@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin>
+	<author>Mai Minh</author>
+	<name>New order Bells</name>
+	<version>1.0</version>
+	<addon>bells</addon>
+	<event>CONTACT</event>
+	<publish_date>2000-10-01</publish_date>
+	<description>Ringing if new contacted</description>
+</plugin>

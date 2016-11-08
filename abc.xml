@@ -1,0 +1,71 @@
+<VAST version="2.0">
+<Ad id="Adotube">
+<InLine>
+<AdSystem version="3.0">Adotube</AdSystem>
+<AdTitle>
+<![CDATA[ Adotube ]]>
+</AdTitle>
+<Description>
+<![CDATA[ ]]>
+</Description>
+<Impression>
+<![CDATA[
+http://stats.adotube.com/log_stats.php?urid=e96a8b2ebfac72ad1953f203b64d485e&action=Impression&b=0&billing_type=0&avpid_stats=oRYYzvQ&pid=&gid=&publisher_id=1797&capid=&wid=wid_457873660_5757bf4438b866.02942567&geo=VN_44_Hanoi___&ad_id=test&cat_id=0&cam_id=7913&cb=575a49dcb2bb76.58443121&value=&test=NA_NA_NA_NA_NA_NA_NA_NA&bk=&adex_id=&HTTP_REFERER=http%3A%2F%2Fwww.longtailvideo.com&video_identifier=longtailvideo.com%2Ctest&urid=e96a8b2ebfac72ad1953f203b64d485e
+]]>
+</Impression>
+<Creatives>
+<Creative sequence="1" id="oRYYzvQ">
+<Linear>
+<Duration>00:00:13</Duration>
+<TrackingEvents>
+<Tracking event="firstQuartile">
+<![CDATA[
+http://stats.adotube.com/log_stats.php?urid=e96a8b2ebfac72ad1953f203b64d485e&action=Views25&b=0&billing_type=0&avpid_stats=oRYYzvQ&pid=&gid=&publisher_id=1797&capid=&wid=wid_457873660_5757bf4438b866.02942567&geo=VN_44_Hanoi___&ad_id=test&cat_id=0&cam_id=7913&cb=575a49dcb2bb76.58443121&value=&test=NA_NA_NA_NA_NA_NA_NA_NA&bk=&adex_id=&HTTP_REFERER=http%3A%2F%2Fwww.longtailvideo.com&video_identifier=longtailvideo.com%2Ctest&urid=e96a8b2ebfac72ad1953f203b64d485e
+]]>
+</Tracking>
+<Tracking event="midpoint">
+<![CDATA[
+http://stats.adotube.com/log_stats.php?urid=e96a8b2ebfac72ad1953f203b64d485e&action=Views50&b=0&billing_type=0&avpid_stats=oRYYzvQ&pid=&gid=&publisher_id=1797&capid=&wid=wid_457873660_5757bf4438b866.02942567&geo=VN_44_Hanoi___&ad_id=test&cat_id=0&cam_id=7913&cb=575a49dcb2bb76.58443121&value=&test=NA_NA_NA_NA_NA_NA_NA_NA&bk=&adex_id=&HTTP_REFERER=http%3A%2F%2Fwww.longtailvideo.com&video_identifier=longtailvideo.com%2Ctest&urid=e96a8b2ebfac72ad1953f203b64d485e
+]]>
+</Tracking>
+<Tracking event="thirdQuartile">
+<![CDATA[
+http://stats.adotube.com/log_stats.php?urid=e96a8b2ebfac72ad1953f203b64d485e&action=Views75&b=0&billing_type=0&avpid_stats=oRYYzvQ&pid=&gid=&publisher_id=1797&capid=&wid=wid_457873660_5757bf4438b866.02942567&geo=VN_44_Hanoi___&ad_id=test&cat_id=0&cam_id=7913&cb=575a49dcb2bb76.58443121&value=&test=NA_NA_NA_NA_NA_NA_NA_NA&bk=&adex_id=&HTTP_REFERER=http%3A%2F%2Fwww.longtailvideo.com&video_identifier=longtailvideo.com%2Ctest&urid=e96a8b2ebfac72ad1953f203b64d485e
+]]>
+</Tracking>
+<Tracking event="complete">
+<![CDATA[
+http://stats.adotube.com/log_stats.php?urid=e96a8b2ebfac72ad1953f203b64d485e&action=Views100&b=0&billing_type=0&avpid_stats=oRYYzvQ&pid=&gid=&publisher_id=1797&capid=&wid=wid_457873660_5757bf4438b866.02942567&geo=VN_44_Hanoi___&ad_id=test&cat_id=0&cam_id=7913&cb=575a49dcb2bb76.58443121&value=&test=NA_NA_NA_NA_NA_NA_NA_NA&bk=&adex_id=&HTTP_REFERER=http%3A%2F%2Fwww.longtailvideo.com&video_identifier=longtailvideo.com%2Ctest&urid=e96a8b2ebfac72ad1953f203b64d485e
+]]>
+</Tracking>
+</TrackingEvents>
+<VideoClicks>
+<ClickThrough>
+<![CDATA[
+http://stats.adotube.com/log_stats.php?urid=e96a8b2ebfac72ad1953f203b64d485e&url=http%3A%2F%2Fadotube.com&action=Click&b=0&conv=1&billing_type=2&avpid_stats=oRYYzvQ&pid=&gid=&publisher_id=1797&capid=&wid=wid_457873660_5757bf4438b866.02942567&geo=VN_44_Hanoi___&ad_id=test&cat_id=0&cam_id=7913&cb=575a49dcb2bb76.58443121&value=&test=NA_NA_NA_NA_NA_NA_NA_NA&bk=&adex_id=&HTTP_REFERER=http%3A%2F%2Fwww.longtailvideo.com&video_identifier=longtailvideo.com%2Ctest&urid=e96a8b2ebfac72ad1953f203b64d485e
+]]>
+</ClickThrough>
+</VideoClicks>
+<MediaFiles>
+<MediaFile delivery="progressive" bitrate="600" width="640" height="360" type="video/mp4">
+<![CDATA[
+http://creative.js.adotube.com/creatives/dev_test/pre1_video1_html5.mp4
+]]>
+</MediaFile>
+<MediaFile delivery="progressive" bitrate="600" width="640" height="360" type="video/x-flv">
+<![CDATA[
+http://creative.js.adotube.com/creatives/dev_test/pre1_video1_html5.flv
+]]>
+</MediaFile>
+<MediaFile delivery="progressive" bitrate="600" width="640" height="360" type="video/webm">
+<![CDATA[
+http://creative.js.adotube.com/creatives/dev_test/pre1_video1_html5.webm
+]]>
+</MediaFile>
+</MediaFiles>
+</Linear>
+</Creative>
+</Creatives>
+</InLine>
+</Ad>
+</VAST>

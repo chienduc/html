@@ -1,0 +1,20 @@
+@import url("base/jquery.ui.base.css");
+
+  /**************************/
+ /*        CSS reset       */
+/**************************/
+/*Date picker*/
+#ui-datepicker-div {z-index:10 !important;}
+/*6. ///////Form common to all templates///////*/
+
+/*7. ///////Buttons common to all templates///////*/
+	input.btn {color:#fefefe; font-size:14px; background:url(../images/bg_btn_03.png) 0 0 repeat-x; height:30px; line-height:30px; text-align:center; border:1px solid #004f6b; border-radius:1px; *border:0; font-weight:bold; cursor:pointer; overflow:visible; width:auto; padding:0 12px;}		
+
+/*8. ///////Classes common to all templates///////*/
+	.loading {}
+	.hidden {display:none !important;}
+	.floatL { float:left}
+	.floatR { float:right}
+	.green {color:#229922; padding-top:3px;}
+	
+/*9. CSS Sprites ///////Styles sprite to all templates///////*/

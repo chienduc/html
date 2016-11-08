@@ -1,0 +1,112 @@
+{if $result_code}<div class="message">{$amessages.result_code.$result_code}</div>{/if}
+{if $error_code}<div class="message2">{$amessages.error_code.$error_code}</div>{/if}
+{if $error}
+{if $error.invalid || $error.message}
+{assign var=input value=$error.INPUT}
+<div class="errorBox">
+<h2>{$locale->msg('error_notes')}:</h2>
+<ul class="listStyle">
+{foreach from=$input item=field}
+{if $field.error}<li>{$field.message}</li>{/if}
+{/foreach}
+<li>{$error.message}</li>
+</ul>
+</div>
+{/if}
+{/if}
+<div class="formContent">
+<h1>{$locale->msg('add_new_product')}</h1>
+<form action="/{$aScript}" method="post" name="formAdd" id="formAdd" enctype="multipart/form-data" >
+<fieldset>
+<p><strong>* {$locale->msg('required_fields')}</strong></p>
+
+<p><label for="catid">Nhóm chuyên mục:</label>
+<select name="catid" id="catid">
+{$categoryBrand}
+</select></p>
+
+<p><label for="cat_id">Filter:</label>
+
+<select name="cat_id[]" id="cat_id" multiple="multiple" class="multiple" style=" height:250px; font-size:12px; font-weight:bold">
+{$categoryCombo}
+</select>
+<input type="button" id="select_all" value="Select all" onclick="listTour()" class="mini" style="width:70px"/>
+</p>
+
+<script>
+	  function listTour()
+      {
+      var list = document.getElementById('cat_id');
+      for(var i = 0; i < list.options.length; ++i)
+         {
+            list.options[i].selected = true;
+         }
+      }
+      </script>
+
+<p><label for="status">{$locale->msg('system_status')}:</label>
+<select name="status" id="status" class="small">
+<option value="1"{if isset($error.INPUT) && $error.INPUT.status.value eq 1} selected="selected"{/if}>{$locale->msg('enable')}</option>
+<option value="0"{if isset($error.INPUT) && $error.INPUT.status.value eq 0} selected="selected"{/if}>{$locale->msg('disable')}</option>
+</select></p>
+<p{if isset($error.INPUT) && $error.INPUT.position.error} class="errormsg"{/if}><label for="position">{$locale->msg('position')}:</label>
+<input class="small" type="text" value="{if isset($error.INPUT)}{$error.INPUT.position.value}{/if}" name="position" id="position" /></p>
+<p{if isset($error.INPUT) && $error.INPUT.name.error} class="errormsg"{/if}><label for="name">* {$locale->msg('product_name')}: </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.name.value}{/if}" name="name" id="name" /></p>
+
+<p{if isset($error.INPUT) && $error.INPUT.sku.error} class="errormsg"{/if}><label for="name">* Mã ản phẩm: </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.sku.value}{/if}" name="sku" id="sku" /></p>
+
+<p{if isset($error.INPUT) && $error.INPUT.keyword.error} class="errormsg"{/if}><label for="keyword">* {$locale->msg('keyword')}:</label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.keyword.value}{/if}" name="keyword" id="keyword" /></p>
+
+<p{if isset($error.INPUT) && $error.INPUT.description.error} class="errormsg"{/if}><label for="description">* {$locale->msg('description')}:</label>
+<textarea rows="10" cols="20" name="description" id="description">{if isset($error.INPUT)}{$error.INPUT.description.value}{/if}</textarea></p>
+
+
+<p{if isset($error.INPUT) && $error.INPUT.price.error} class="errormsg"{/if}><label for="price">Giá: </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.price.value}{/if}" name="price" id="price" /></p>
+
+<p{if isset($error.INPUT) && $error.INPUT.market_price.error} class="errormsg"{/if}><label for="price">Giá khuyến mãi: </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.market_price.value}{/if}" name="market_price" id="market_price" /></p>
+
+<p{if isset($error.INPUT) && $error.INPUT.acreages.error} class="errormsg"{/if}><label for="price">Trọng lượng: </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.acreages.value}{/if}" name="acreages" id="acreages" /></p>
+
+
+<p{if isset($error.INPUT) && $error.INPUT.detail.error} class="errormsg"{/if}><label for="detail">*{$locale->msg('product_intro')}:</label>
+<textarea rows="10" cols="20" name="detail" id="detail">{if isset($error.INPUT)}{$error.INPUT.detail.value}{/if}</textarea></p>
+{literal}<script type="text/javascript">var editor = CKEDITOR.replace('detail');</script>{/literal}
+
+
+
+<p><label for="avatar"> {$locale->msg('avatar')}: </label><input type="file"  name="avatar" id="avatar" /></p>
+<p><label for="avatar"> Bảng màu: </label><input type="file"  name="color_board" id="color_board" /></p>
+
+{if $fieldList}
+<br /><h2>{$locale->msg('list_custom_field')}</h2>
+{foreach key=no from=$fieldList item=field}
+{if isset($error.INPUT)}
+{assign var=field_name value=$field->getName()}
+{$field->displayHTML($error.INPUT.$field_name.value)}
+{else}
+{$field->displayHTML()}
+{/if}
+{/foreach}
+{/if}
+<br />
+<p class="btn">
+<input type="hidden" name="op" value="manage" />
+<input type="hidden" name="act" value="product" />
+<input type="hidden" name="mod" value="add" />
+<input type="hidden" name="doo" value="submit" />
+<input type="hidden" name="sCode" value="{$sCode}_" />
+<input type="hidden" name="lang" value="{$lang}" />
+<input type="submit" value="{$locale->msg('button_submit')}" title="{$locale->msg('button_submit')}" name="btnSubmit" />
+<input type="reset" value="{$locale->msg('button_reset')}" title="{$locale->msg('button_reset')}" name="btnReset" />
+<input type="button" onclick="javascript:formSubmit('formAdd','list','cancel',0);" value="{$locale->msg('button_cancel')}" title="{$locale->msg('button_cancel')}" name="btnCancel" />
+</p>
+</fieldset>
+</form>
+</div>
+</div>

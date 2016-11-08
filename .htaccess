@@ -1,0 +1,152 @@
+#-----------------------------------------
+# Mai Minh Hotmeal.vn 24/03/2012
+#-----------------------------------------
+
+<Files .htaccess>
+deny from all
+</Files>
+
+<Files config.php>
+deny from all
+</Files>
+
+#Options -Indexes
+#Options +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+<IfModule mod_dir.c>
+DirectoryIndex index.php index.html
+</IfModule>
+
+# Main site
+RewriteRule ^(vn|en)/index\.html$ index.php?op=estore&act=index&lang=$1 [L,NC]
+RewriteRule ^(vn|en)/page-([0-9-_]+)\.html$ index.php?op=estore&act=index&pg=$1 [L,NC]
+RewriteRule ^(vn|en)[/]?(index\.html)?$ index.php?op=estore&lang=$1 [L,NC]
+RewriteRule ^(vn|en)/san-pham\.htm$ index.php?op=estore&act=product [L,NC]
+
+RewriteRule ^kissparfum\.html$ index.php?op=estore&act=index&template=kissparfum [L,NC]
+RewriteRule ^linddy\.html$ index.php?op=estore&act=index&template=linddy [L,NC]
+RewriteRule ^tiffany\.html$ index.php?op=estore&act=index&template=tiffanyhotel [L,NC]
+
+# Contact
+RewriteRule ^(vn|en|)?[/]?contacts\.html$ index.php?op=estore&act=contact&lang=$1 [L,NC]
+RewriteRule ^(vn|en|)?[/]?contact/([a-z0-9-_]+)\.html$ index.php?op=estore&act=contact&lang=$1&slug=$2 [L,NC]
+
+
+#Question
+RewriteRule ^(vn|en)?[/]?questions.html$ index.php?op=estore&act=questions&lang=$1 [L,NC]
+
+
+#Question
+RewriteRule ^(vn|en)?[/]?question/([a-z0-9-_]+)-([0-9-_]+)\.htm$ index.php?op=estore&act=question&lang=$1&slug=$2&id=$3 [L,NC]
+
+#Booktour
+RewriteRule ^(vn|en)?[/]?booktours/tour-([0-9-_]+)\.html$ index.php?op=estore&act=tours&lang=$1&id=$2 [L,NC]
+
+#Search
+RewriteRule ^(vn|en)?[/]?search\.html$ index.php?op=estore&act=search&lang=$1 [L,NC]
+RewriteRule ^(vn|en)?[/]?search/p-([0-9-_]+)\.html$ index.php?op=estore&act=search&lang=$1&pg=$2 [L,NC]
+
+#Booktour
+RewriteRule ^(vn|en)?[/]?booktours\.html$ index.php?op=estore&act=tour&lang=$1 [L,NC]
+
+RewriteRule ^(vn|en)?[/]?success\.html$ index.php?op=estore&act=success&lang=$1 [L,NC]
+
+#sitemap
+RewriteRule ^(vn|en)/sitemap.html$ index.php?op=estore&act=sitemap&lang=$1 [L,NC]
+
+# Introduction
+RewriteRule ^(vn|en|)?[/]?introduction/([a-z0-9-_]+)\.html$ index.php?op=estore&act=introduction&lang=$1&slug=$2 [L,NC]
+
+# Static
+RewriteRule ^(vn|en|)?[/]?info/([a-z0-9-_]+)\.html$ index.php?op=estore&act=static&lang=$1&slug=$2 [L,NC]
+
+# News
+RewriteRule ^(vn|en|)?[/]?news\.html$ index.php?op=estore&act=new&lang=$1 [L,NC]
+
+# Register
+RewriteRule ^(vn|en|)?[/]?register\.html$ index.php?op=estore&act=register&lang=$1 [L,NC]
+
+# Login
+RewriteRule ^(vn|en|)?[/]?login\.html$ index.php?op=estore&act=login&lang=$1 [L,NC]
+
+
+# Login
+RewriteRule ^(vn|en|)?[/]?dang-tin\.html$ index.php?op=estore&act=dangtin&lang=$1 [L,NC]
+
+# Experience
+RewriteRule ^(vn|en|)?[/]?experiences\.html$ index.php?op=estore&act=experience&lang=$1 [L,NC]
+
+# Fengshui
+RewriteRule ^(vn|en|)?[/]?fengshuis\.html$ index.php?op=estore&act=fengshui&lang=$1 [L,NC]
+
+# Service
+RewriteRule ^(vn|en|)?[/]?services\.html$ index.php?op=estore&act=service&lang=$1 [L,NC]
+
+# Staffs Prime
+RewriteRule ^(vn|en|)?[/]?staffs/([a-z0-9-_]+)-c([0-9-_]+)\.html$ index.php?op=estore&act=staffprime&lang=$1&slug=$2&cid=$3 [L,NC]
+RewriteRule ^(vn|en|)?[/]?staffs/([a-z0-9-_]+)-c([0-9-_]+)/page-([0-9-_]+)\.html$ index.php?op=estore&act=staffprime&lang=$1&slug=$2&cid=$3&pg=$4 [L,NC]
+
+# Member prime
+RewriteRule ^(vn|en|)?[/]?member-prime\.html$ index.php?op=estore&act=memberprime&lang=$1 [L,NC]
+
+# Awards and honors
+RewriteRule ^(vn|en|)?[/]?business\.html$ index.php?op=estore&act=business&lang=$1 [L,NC]
+RewriteRule ^(vn|en|)?[/]?business/p-([0-9-_]+)\.html$ index.php?op=estore&act=business&lang=$1&pg=$2 [L,NC]
+RewriteRule ^(vn|en|)?[/]?business/([a-z0-9-_]+)-c([0-9-_]+)\.html$ index.php?op=estore&act=businessinfo&lang=$1&slug=$2&id=$3 [L,NC]
+
+
+# Wood products
+RewriteRule ^(vn|en|)?[/]?wood-products\.html$ index.php?op=estore&act=woodproduct&lang=$1 [L,NC]
+RewriteRule ^(vn|en|)?[/]?wood-products/page-([0-9-_]+)\.html$ index.php?op=estore&act=woodproduct&lang=$1&pg=$2 [L,NC]
+
+# Activities of the prime
+RewriteRule ^(vn|en|)?[/]?activities-prime\.html$ index.php?op=estore&act=activitieprime&lang=$1 [L,NC]
+RewriteRule ^(vn|en|)?[/]?activities-prime/page-([0-9-_]+)\.html$ index.php?op=estore&act=activitieprime&lang=$1&pg=$2 [L,NC]
+
+# Clients
+RewriteRule ^(vn|en|)?[/]?clients\.html$ index.php?op=estore&act=client&lang=$1 [L,NC]
+RewriteRule ^(vn|en|)?[/]?clients/page-([0-9-_]+)\.html$ index.php?op=estore&act=client&lang=$1&pg=$2 [L,NC]
+
+
+# Project
+RewriteRule ^(vn|en|)?[/]?projects\.html$ index.php?op=estore&act=project&lang=$1 [L,NC]
+RewriteRule ^(vn|en|)?[/]?san-pham/([a-z0-9-_]+)-c([0-9-_]+)\.html$ index.php?op=estore&act=products&lang=$1&slug=$2&cid=$3 [L,NC]
+RewriteRule ^(vn|en|)?[/]?san-pham/([a-z0-9-_]+)-c([0-9-_]+)/page-([0-9-_]+)\.html$ index.php?op=estore&act=products&lang=$1&slug=$2&cid=$3&pg=$4 [L,NC]
+RewriteRule ^(vn|en|)?[/]?([a-z0-9-_]+)/([a-z0-9-_]+)-p([0-9-_]+)\.html$ index.php?op=estore&act=product&lang=$1&catslug=$2&slug=$3&id=$4 [L,NC]
+
+# Material
+RewriteRule ^(vn|en|)?[/]?materials\.html$ index.php?op=estore&act=materiallist&lang=$1 [L,NC]
+RewriteRule ^(vn|en|)?[/]?materials/([a-z0-9-_]+)-c([0-9-_]+)\.html$ index.php?op=estore&act=materials&lang=$1&slug=$2&cid=$3 [L,NC]
+RewriteRule ^(vn|en|)?[/]?materials/([a-z0-9-_]+)-c([0-9-_]+)/page-([0-9-_]+)\.html$ index.php?op=estore&act=materials&lang=$1&slug=$2&cid=$3&pg=$4 [L,NC]
+RewriteRule ^(vn|en|)?[/]?materials/([a-z0-9-_]+)/([a-z0-9-_]+)-p([0-9-_]+)\.html$ index.php?op=estore&act=material&lang=$1&catslug=$2&slug=$3&id=$4 [L,NC]
+
+# Category
+RewriteRule ^(vn|en|)?[/]?news/([a-z0-9-_]+)-c([0-9-_]+)\.html$ index.php?op=estore&act=news&lang=$1&slug=$2&cid=$3 [L,NC]
+RewriteRule ^(vn|en|)?[/]?news/([a-z0-9-_]+)-c([0-9-_]+)/page-([0-9-_]+)\.html$ index.php?op=estore&act=news&lang=$1&slug=$2&cid=$3&pg=$4 [L,NC]
+
+#  Experiences
+RewriteRule ^(vn|en|)?[/]?experiences/([a-z0-9-_]+)-c([0-9-_]+)\.html$ index.php?op=estore&act=experiences&lang=$1&slug=$2&cid=$3 [L,NC]
+RewriteRule ^(vn|en|)?[/]?experiences/([a-z0-9-_]+)-c([0-9-_]+)/page-([0-9-_]+)\.html$ index.php?op=estore&act=experiences&lang=$1&slug=$2&cid=$3&pg=$4 [L,NC]
+RewriteRule ^(vn|en|)?[/]?experiences/([a-z0-9-_]+)/([a-z0-9-_]+)-([0-9-_]+)\.htm$ index.php?op=estore&act=experiencedetail&lang=$1&cateslug=$2&slug=$3&id=$4 [L,NC]
+
+#  Fengshui
+RewriteRule ^(vn|en|)?[/]?fengshuis/([a-z0-9-_]+)-c([0-9-_]+)\.html$ index.php?op=estore&act=fengshuis&lang=$1&slug=$2&cid=$3 [L,NC]
+RewriteRule ^(vn|en|)?[/]?fengshuis/([a-z0-9-_]+)-c([0-9-_]+)/page-([0-9-_]+)\.html$ index.php?op=estore&act=fengshuis&lang=$1&slug=$2&cid=$3&pg=$4 [L,NC]
+RewriteRule ^(vn|en|)?[/]?fengshuis/([a-z0-9-_]+)/([a-z0-9-_]+)-([0-9-_]+)\.htm$ index.php?op=estore&act=fengshuidetail&lang=$1&cateslug=$2&slug=$3&id=$4 [L,NC]
+
+#  Service
+RewriteRule ^(vn|en|)?[/]?services/([a-z0-9-_]+)-c([0-9-_]+)\.html$ index.php?op=estore&act=services&lang=$1&slug=$2&cid=$3 [L,NC]
+RewriteRule ^(vn|en|)?[/]?services/([a-z0-9-_]+)-c([0-9-_]+)/page-([0-9-_]+)\.html$ index.php?op=estore&act=services&lang=$1&slug=$2&cid=$3&pg=$4 [L,NC]
+RewriteRule ^(vn|en|)?[/]?services/([a-z0-9-_]+)/([a-z0-9-_]+)-([0-9-_]+)\.htm$ index.php?op=estore&act=servicedetail&lang=$1&cateslug=$2&slug=$3&id=$4 [L,NC]
+
+RewriteRule ^(vn|en|)?[/]?([a-z0-9-_]+)-c([0-9-_]+)\.htm$ index.php?op=estore&act=news&&lang=$1&slug=$2&cId=$3 [L,NC]
+RewriteRule ^(vn|en|)?[/]?([a-z0-9-_]+)-c([0-9-_]+)/page-([0-9-_]+)\.htm$ index.php?op=estore&act=news&lang=$1&slug=$2&cId=$3&pg=$4 [L,NC]
+RewriteRule ^(vn|en|)?[/]?([a-z0-9-_]+)/([a-z0-9-_]+)-([0-9-_]+)\.htm$ index.php?op=estore&act=newdetail&lang=$1&cateslug=$2&slug=$3&id=$4 [L,NC]
+
+RewriteRule ^(vn|en|)?[/]?authimg/authimg.gif authimg.php [L,NC]
+
+</IfModule>

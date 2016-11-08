@@ -1,0 +1,197 @@
+ {include file="$usertemplate/header.tpl.html"}	
+ <!-- shop product setting -->
+ {if $productSethome}
+<div class="panel panel-primary customemobile" id="cusshopproduct">
+    <div class="panel-heading cushead">
+        <h1 class="panel-title custitle" id="panel-title">Sản Phẩm Nổi Bật</h1>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+         {foreach from=$productSethome key=i item=item}
+         {assign var=avatar value=$item->getProperty('avatar')}
+          <div class="col-san-pham cussp">
+                <div class="thumbnail custhumnail">
+                    <a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}"><h4 style=" text-align:center"><img class="img-thumbnail cusimg" src="/upload/1/products/a_{$avatar}" alt="{$item->getName($lang)}" /></h4></a>
+                    <div class="caption cuscap">
+                    	<p class=""><a id="bangmauan" href="{$item->getUrl($lang)}" class="btn btn-primary cusimg" role="button" title="{$item->getName($lang)}"></a></p>
+                        <h2 class="cush2"><a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}">{$item->getName($lang)}</a></h2>
+                        <p style="margin-bottom:0px;font-size:80%; margin-top:10px; text-align:left">Mã SP: <span style=" font-weight:bold">{$item->getSku()}</span></p>
+                        
+                       {if $item->getMarketPrice()>0}<p style="color:#00507c;font-size:80%; text-align:left; margin-bottom:0px"><b>Giá cũ: <span style=" font-weight:bold; color:#666; font-size:14px; text-decoration:line-through">{$item->getMarketPrice()|number_format}  vnđ</span></b></p>{/if}
+                        
+                        <p style="color:#00507c;font-size:80%; text-align:left"><b>Giá: <span style=" font-weight:bold; color:red; font-size:14px">{if $item->getPrice()>0}{$item->getPrice()|number_format}  vnđ{else}Liên hệ{/if}</span></b></p>
+                       
+                    </div>
+                     <p class="p-product1"><a id="bangmauan" href="{$item->getUrl($lang)}" class="btn btn-primary cusimg" role="button" title="{$item->getName($lang)}">Xem chi tiết</a></p>
+                </div>
+            </div>
+          {/foreach}
+        
+        </div>
+    </div>
+</div>
+{/if}
+
+{if $listAd_3}
+{foreach from=$listAd_3 key=i item=ads}
+{if $i==0}
+  {assign var=banner value=$ads->getProperty('logo')}
+  {assign var=url value=$ads->getProperty('url')} 
+<div class="panel panel-primary customemobile" id="cusshopproduct">
+ <a href="{$url}" title="{$ads->getContent($lang)}"><img class="addimages" src="/upload/1/resources/l_{$banner}" alt="{$ads->getContent($lang)}"   /></a>  
+</div>
+{/if}
+{/foreach}
+{/if}
+
+ {if $productNew}
+<div class="panel panel-primary customemobile" id="cusshopproduct">
+    <div class="panel-heading cushead">
+        <h1 class="panel-title custitle" id="panel-title">Sản Phẩm Mới Nhất</h1>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+         {foreach from=$productNew key=i item=item}
+         {assign var=avatar value=$item->getProperty('avatar')}
+          <div class="col-san-pham cussp">
+                <div class="thumbnail custhumnail">
+                    <a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}"><h4 style=" text-align:center"><img class="img-thumbnail cusimg" src="/upload/1/products/a_{$avatar}" alt="{$item->getName($lang)}" /></h4></a>
+                    <div class="caption cuscap">
+                    	<p class=""><a id="bangmauan" href="{$item->getUrl($lang)}" class="btn btn-primary cusimg" role="button" title="{$item->getName($lang)}"></a></p>
+                        <h2 class="cush2"><a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}">{$item->getName($lang)}</a></h2>
+                        <p style="margin-bottom:0px;font-size:80%; margin-top:10px; text-align:left">Mã SP: <span style=" font-weight:bold">{$item->getSku()}</span></p>
+                        
+                        {if $item->getMarketPrice()>0}<p style="color:#00507c;font-size:80%; text-align:left; margin-bottom:0px"><b>Giá cũ: <span style=" font-weight:bold; color:#666; font-size:14px; text-decoration:line-through">{$item->getMarketPrice()|number_format}  vnđ</span></b></p>{/if}
+                        
+                        <p style="color:#00507c;font-size:80%; text-align:left"><b>Giá: <span style=" font-weight:bold; color:red; font-size:14px">{if $item->getPrice()>0}{$item->getPrice()|number_format}  vnđ{else}Liên hệ{/if}</span></b></p>
+                       
+                    </div>
+                     <p class="p-product1"><a id="bangmauan" href="{$item->getUrl($lang)}" class="btn btn-primary cusimg" role="button" title="{$item->getName($lang)}">Xem chi tiết</a></p>
+                </div>
+            </div>
+          {/foreach}
+        
+        </div>
+    </div>
+</div>
+{/if}
+
+{if $listAd_3}
+{foreach from=$listAd_3 key=i item=ads}
+{if $i==1}
+  {assign var=banner value=$ads->getProperty('logo')}
+  {assign var=url value=$ads->getProperty('url')} 
+<div class="panel panel-primary customemobile" id="cusshopproduct">
+ <a href="{$url}" title="{$ads->getContent($lang)}"><img class="addimages" src="/upload/1/resources/l_{$banner}" alt="{$ads->getContent($lang)}"   /></a>  
+</div>
+{/if}
+{/foreach}
+{/if}
+
+
+
+ {if $productPromotion}
+<div class="panel panel-primary customemobile" id="cusshopproduct">
+    <div class="panel-heading cushead">
+        <h1 class="panel-title custitle" id="panel-title">Sản Phẩm Khuyến Mãi</h1>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+         {foreach from=$productPromotion key=i item=item}
+         {assign var=avatar value=$item->getProperty('avatar')}
+          <div class="col-san-pham cussp">
+                <div class="thumbnail custhumnail">
+                    <a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}"><h4 style=" text-align:center"><img class="img-thumbnail cusimg" src="/upload/1/products/a_{$avatar}" alt="{$item->getName($lang)}" /></h4></a>
+                    <div class="caption cuscap">
+                    	<p class=""><a id="bangmauan" href="{$item->getUrl($lang)}" class="btn btn-primary cusimg" role="button" title="{$item->getName($lang)}"></a></p>
+                        <h2 class="cush2"><a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}">{$item->getName($lang)}</a></h2>
+                        <p style="margin-bottom:0px;font-size:80%; margin-top:10px; text-align:left">Mã SP: <span style=" font-weight:bold">{$item->getSku()}</span></p>
+                        
+                      {if $item->getMarketPrice()>0}<p style="color:#00507c;font-size:80%; text-align:left; margin-bottom:0px"><b>Giá cũ: <span style=" font-weight:bold; color:#666; font-size:14px; text-decoration:line-through">{$item->getMarketPrice()|number_format}  vnđ</span></b></p>{/if}
+                        
+                        <p style="color:#00507c;font-size:80%; text-align:left"><b>Giá: <span style=" font-weight:bold; color:red; font-size:14px">{if $item->getPrice()>0}{$item->getPrice()|number_format}  vnđ{else}Liên hệ{/if}</span></b></p>
+                       
+                    </div>
+                     <p class="p-product1"><a id="bangmauan" href="{$item->getUrl($lang)}" class="btn btn-primary cusimg" role="button" title="{$item->getName($lang)}">Xem chi tiết</a></p>
+                </div>
+            </div>
+          {/foreach}
+        
+        </div>
+    </div>
+</div>
+{/if}
+
+
+
+ {if $comboLeft2}
+<!-- custome san pham mobile-->
+<div class="col-sm-6 col-xs-6">
+<div class="row">
+<div class="panel panel-primary customedesktop">
+<div class="panel-heading">
+<h3 class="panel-title" id="panel-title">Danh Mục Sản Phẩm</h3>
+</div>
+<div id="cusnsxmenu" class="panel-body">
+<div id='cssmenuleft' class="panel-body">
+    <ul>
+  {foreach from=$comboLeft2 item=combo key = i} 
+   {assign var=comboChildren value=$combo->getChildren()}
+       <li style="padding:6px 0px" class='has-sub'><a href="{$combo->getUrl($lang)}" title="{$combo->getName($lang)}"><span class="chinh">{$combo->getName($lang)}</span></a>
+       {if $comboChildren}
+            <ul>
+            {foreach from=$comboChildren item=combochild key = j}
+                <li style="padding:6px 0px"><a href="{$combochild->getUrl($lang)}" title="{$combochild->getName($lang)}"><span class="phu">{$combochild->getName($lang)}</span></a></li>
+             {/foreach}
+            </ul>
+            {/if}
+       </li>
+  {/foreach}
+    </ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+{/if}
+
+
+
+<div class="col-sm-6 col-xs-6">
+<div class="row">
+
+{if $productSethome}
+<div class="col-sm-12 col-xs-12">
+<div class="row">
+<div class="panel panel-primary customedesktop">
+<div class="panel-heading">
+<h3 class="panel-title" id="panel-title">Sơn Nổi Bật</h3>
+</div>
+<div class="panel-body">
+<div class="row">
+{foreach from=$productSethome key=i item=item}
+  {assign var=avatar value=$item->getProperty('avatar')}
+    <div class="thumbnail custhumnail" style="height:250px">
+        <a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}"><h4 style="text-align:center"><img class="img-thumbnail cusimg" src="/upload/1/products/a_{$avatar}" alt="{$item->getName($lang)}" style="width:80% !important;height:60% !important;"/></h4></a>
+        <div class="caption cuscap">
+            <h2 class="cush2"><small class="cusmall"><a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}">{$item->getName($lang)}</a></small></h2>
+            <p style="margin-bottom:0px;font-size:80%;">Mã SP: {$item->getSku()}</p>
+            <p style="color:#00507c;font-size:80%;"><b>Giá: <span style=" color:red" >{if $item->getPrice()>0}{$item->getPrice()|number_format}  vnđ{else}Liên hệ{/if}</span></b></p>
+        </div>
+    </div>
+ {/foreach}
+</div>
+</div>
+</div>
+</div>
+</div>
+{/if}
+
+
+</div>
+</div>
+<!-- end custome san pham mobile -->
+            </div>
+{include file="$usertemplate/right.tpl.html"}	
+ {include file="$usertemplate/footer.tpl.html"}	          
+          

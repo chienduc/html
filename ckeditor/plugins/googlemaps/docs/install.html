@@ -1,0 +1,185 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>GoogleMaps plugin</title>
+<link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>GoogleMaps Plugin for CKEditor</h1>
+
+<h2>Introduction</h2>
+<p>This is a dialog-based plugin to handle insertion and modification of <a href="http://maps.google.com">Google
+  Maps</a> in <a href="http://www.ckeditor.com">CKEditor</a></p>
+<h3 id="contact">Author:</h3>
+<p><a href="mailto:amla70@gmail.com">Alfonso Mart&iacute;nez de Lizarrondo</a></p>
+<h3>Sponsored by:</h3>
+<p><a href="http://dynamical.biz/blog">Ani López, SEO Consultant</a></p>
+<p><a href="http://www.uritec.net">Uritec</a></p>
+<p><a href="http://www.incontrolsolutions.com">InControl Solutions</a></p>
+<p><a href="http://moava.org/">Moava</a></p>
+
+<h3>Version history: </h3>
+<ol>
+	<li>1.0: 25/08/2007. First version for FCKeditor</li>
+	<li>1.x: Several improvements and features.</li>
+	<li>2.0: 30/11/2008. Lots of changes. Changed to closed source</li>
+	<li>2.x: Mainly corrections and bug fixing</li>
+	<li>3.0: xx/08/2010. Rewritten for CKEditor 3.4 and Google Maps API v3:
+		<ul>
+			<li>It doesn't require a maps API key</li>
+			<li>Improved performance of the maps</li>
+			<li>The dialog is located in the main document, so config.GoogleMaps_DialogCss is no longer needed</li>
+		</ul>
+	</li>
+	<li>3.1: 29/11/2011.
+		<ul>
+			<li>Tested with CKEditor 3.6.2 and Google Maps v3.7.</li>
+			<li>Fixing previous bugs</li>
+			<li>Enabled creating and deleting lines and areas.</li>
+		</ul>
+	</li>
+	<li>3.2: 13/05/2012.
+		<ul>
+			<li>Tested with CKEditor 3.6.3 and Google Maps v3.8.11.</li>
+			<li>Fixing previous bugs</li>
+			<li>Context menu and double click in the editor are handled exclusively</li>
+			<li>It's possible to delete single points in lines and areas.</li>
+			<li>Enabled Traffic and Weather layers.</li>
+			<li>End script can be configured with config.googleMaps_endScriptPath.</li>
+		</ul>
+	</li>
+
+</ol>
+<!--
+<p><a href="http://martinezdelizarrondo.com/googlemaps/">Get the latest version and/or updated info</a> </p>
+-->
+<h3>Known bugs:</h3>
+<p>Google bar isn't available.</p>
+
+
+
+<h2>Installation</h2>
+<h3>1. Copying the files</h3>
+<p>Extract the contents of the zip in you plugins directory, so it ends up like
+    this<br>
+    <!--<img src="installation.png" alt="Screenshot of installation" width="311" height="346" longdesc="#install">-->
+    </p>
+<pre id="--install">
+ckeditor\
+	...
+	images\
+	lang\
+	plugins\
+		...
+		googlemaps\
+			...
+			plugin.js
+			readme.html
+			dialogs\
+			docs\
+			images\
+			lang\
+		...
+	skins\
+	themes\
+</pre>
+<h3>2. Adding it to CKEditor</h3>
+<p>Now add the plugin in your <em>config.js</em> or custom js configuration
+file:
+<code>config.extraPlugins='googlemaps'; </code>
+</p>
+<h3>3. Adding it to the toolbarset</h3>
+<p>Add the button <strong>'GoogleMaps'</strong> (case sensitive) to your toolbarset:
+<code>
+
+config.toolbar_Full =
+[
+    ['Source','-','Save','NewPage','Preview','-','Templates'],
+    ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print', 'SpellChecker', 'Scayt'],
+    ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+    ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+    '/',
+    ['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+    ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
+    ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+    ['Link','Unlink','Anchor'],
+    ['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
+    '/',
+    ['Styles','Format','Font','FontSize'],
+    ['TextColor','BGColor'],
+    ['Maximize', 'ShowBlocks','-','About'],
+    ['GoogleMaps']
+];
+</code>
+</p>
+
+<h3 id="configure">4. Configure the plugin</h3>
+<p>There's no need of an API key in this version, it will automatically work on any server</p>
+
+
+<h3>Configuration options</h3>
+<p>Please note that following the CKEditor pattern, the config options now are lowercased.</p>
+<ul>
+	<li>config.<strong>googleMaps_Width</strong>: The width of the map area. Default: 500.</li>
+	<li>config.<strong>googleMaps_Height</strong>: The height of the map area. Default: 370.</li>
+	<li>config.<strong>googleMaps_CenterLat</strong>: The latitude of the center. Default: 37.4419.</li>
+	<li>config.<strong>googleMaps_CenterLon</strong>: The longitude of the center. Default: -122.1419.</li>
+	<li>config.<strong>googleMaps_Zoom</strong>: The default zoom level. Default: 11.</li>
+	<li id="WrapperClass">config.<strong>googleMaps_WrapperClass</strong>: The Google Maps automatically fills the width and height of the generated div, so if you want to add a little spacing and a border, you need to use a div around it. If this entry contains a non-empty value then such a div
+	will be generated with this class. Default: ''.<br>
+	Important: in the preview inside the editor, the class might be applied to an image, not a div!</li>
+	<li>config.<strong>googleMaps_MarkerText</strong>: Initial text for a marker. Default: lang.googlemaps.defaultMarkerText (changes with the translations)</li>
+
+	<li>config.<strong>filebrowserKmlBrowseUrl</strong> : URL of the file browser for KML files. It defaults to filebrowserBrowseUrl.
+		If it's an empty string the "Browse server" button won't be shown</li>
+
+	<li>config.<strong>googleMaps_endScriptPath</strong> : URL of end script. It defaults to "scripts/cke_gmaps_end.js" at the plugin folder.
+		If it's an empty string the script won't be inserted (you must do it elsewhere in the page or merge it together with the rest of your scripts).
+	</li>
+
+</ul>
+<!--
+<li>FCKConfig.<strong>GoogleMaps_Editor_Width</strong> : Width of the HTML editor for the content of markers</li>
+<li>FCKConfig.<strong>GoogleMaps_Editor_Height</strong> : Height of the HTML editor for the content of markers</li>
+<li>FCKConfig.<strong>GoogleMaps_Editor_CustomConfigurationsPath</strong> : CustomConfigurationsPath of the HTML editor for the content of markers<br>
+	If it's missing it will reuse the path of the main instance of FCKeditor.</li>
+<li>FCKConfig.<strong>GoogleMaps_Editor_ToolbarSet</strong> : Name of the Toolbarse of the HTML editor for the content of markers<br>
+	This toolbarset must be defined in the configuration file for the embedded editor. By default it uses the "Basic" set.</li>
+
+<li>FCKConfig.<strong>KMLBrowserWindowWidth</strong> and FCKConfig.<strong>KMLBrowserWindowHeight</strong>: Dimensions of the
+	window for the KML file browser</li>
+-->
+
+<h3>5. Use it</h3>
+<p align="right">Now empty the cache of your browser and reload the editor, the new button
+  <img src="../icon.gif" alt="Insert GoogleMap" width="16" height="16"> should
+  be <!--<a href="users.html">-->ready to use<!--</a>-->.</p>
+
+<h3>6. Translations</h3>
+<p>To add a new translation open plugin.js and search for "translations", it's at line 1113 and add your language (the example is based on adding Polish ('pl')</p>
+  <code>    // translations
+    lang : ['el', 'en', 'es'],</code>
+to<code>    // translations
+    lang : ['el', 'en', 'es', 'pl'],</code>
+<p>
+Then in the lang folder copy the en.js to pl.js, edit that file and in the first line set your language:</p>
+<code>CKEDITOR.plugins.setLang( 'googlemaps', 'pl',</code>
+<p>and finally, translate all the text between quotes :-)</p>
+<p>If you send it back to me I'll include it in the next versions.</p>
+
+<h3>Other notes</h3>
+<p>The KML files aren't used in the static maps. And in order for them to work you should use them in a public server (localhost won't work with .kmz)<br>
+You might need to adjust the server to use the correct MIME types (application/vnd.google-earth.kml+xml for .kml and application/vnd.google-earth.kmz for .kmz).
+</p>
+
+<p>&nbsp;</p>
+<p>If you need some special feature for this plugin, or if you need any other kind of plugin
+for CKEditor then <a href="#contact">contact me</a> and we can discuss it</p>
+<h2>Disclaimers</h2>
+<p>CKEditor is  &copy; CKSource.com</p>
+<p>Google, Google Maps and the Google Maps API are all properties of Google.</p>
+</body>
+</html>

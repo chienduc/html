@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="index, follow" />
+<meta name="keywords" content="DeraCMS, e-commerce solution, administration page" />
+<meta name="description" content="DeraCMS for E-store" />
+<title>{$locale->msg('manage_website')}</title>
+<link rel="stylesheet" type="text/css" href="/{$templatePath}/{$userTemplate}/css/screen.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/{$templatePath}/{$userTemplate}/css/add.css" media="all" />
+<script type="text/javascript" src="/{$templatePath}/{$userTemplate}/scripts/mootools.js"></script>
+
+{if $ckEditor}<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>{/if}
+<script type="text/javascript" src="/js/swfobject.js"></script>
+{if $selectPhoto}{literal}
+<script type="text/javascript">
+function init(){
+	var els=document.getElementsByTagName('*');
+	var reg=/(^| )selectPhoto($| )/;
+	for(i in els){
+		var el=els[i];
+		if(reg.test(el.className))el.onclick=function(){
+			window.SetUrl=(function(id){
+				return function(value){
+					value=value.replace(/[a-z]*:\/\/[^\/]*/,'');
+					document.getElementById(id).value=value;
+				}
+			})(this.id);
+			var photo_url='/plugins/filemanager/browse.php?type=images';
+			window.open(photo_url,'selectPhoto','modal,width=600,height=400');
+		}
+	}
+}
+</script>
+{/literal}{/if}
+{literal}
+<script type="text/javascript">
+   function confirmAction() {
+        return confirm("Do you want intall this addon?");
+      }
+   function confirmUninstall() {
+        return confirm("Do you want unintall this addon?");
+      }
+</script>
+{/literal}
+</head>
+<body{if $selectPhoto} onload="init()"{/if}>
+<div id="wrapper">
+<div id="header">
+{if $estore->getProperty('admin_logo')}
+<h1><a href="/" title="Home page" target="_blank"><img src="{$estore->getProperty('admin_logo')}" width="181" height="51" alt="Logo" /></a></h1>
+{else}
+<h1><a href="/{$aScript}?op=system&act=config&mod=general">{$locale->msg('update_admin_logo')}</a></h1>
+{/if}
+<div class="topnav">
+<ul>
+{if $authUser}<li><a href="/{$aScript}?op=profile" title="{$locale->msg('system_profile')}">{$locale->msg('system_profile')}</a></li>{/if}
+<li><a href="http://forum.deracms.com" target="_blank" title="{$locale->msg('forum')}">{$locale->msg('forum')}</a></li>
+<li><a href="http://wiki.deracms.com" target="_blank" title="{$locale->msg('helpdesk')}">{$locale->msg('helpdesk')}</a></li>
+</ul>
+</div>
+</div>    
+{include file="$userTemplate/coretopmenu.tpl.html" title=site-top-menu}

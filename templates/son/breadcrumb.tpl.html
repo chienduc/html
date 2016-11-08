@@ -1,0 +1,16 @@
+{if $navigationItems}
+<div class="breadCrumb">
+   <ul>
+   {foreach from=$navigationItems key=i item=navigation}
+   {if $i eq 0}
+          <li><a href="/" title="{$estore->getName()}"><img style="border-radius:5px" src="/{$templatePath}/{$userTemplate}/images/icon_home.png" width="25" height="25" alt=""></a></li>
+     {elseif $navigationItems|@count-1 ne $i}
+         <li><a href="{$navigation.url}" title="{$navigation.name}">{$navigation.name}</a></li> 
+     {else}
+     <li><span>{$navigation.name}</span></li>
+          
+      {/if}
+    {/foreach}    
+    </ul>
+ </div>
+ {/if}

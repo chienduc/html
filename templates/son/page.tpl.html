@@ -1,0 +1,24 @@
+{if $rowsPages.pages >1}
+<div class="san-pham-all">
+<div class="san-pham-all">
+<nav><ul class="pagination pagination-sm">
+{foreach from=$pager item=pageItem key=i}
+{if $i eq 0}
+
+{elseif $i eq 1}
+
+{elseif $i eq $pager|@count-2}
+
+{elseif $i eq $pager|@count-1}
+
+{elseif $pageItem.current eq 1}
+<li><a style="background:#289ED8" aria-label='Previous'  title="{$pageItem.name}">{$pageItem.name}</a></li>
+{else}
+<li><a aria-label='Previous' href="{$pageItem.url}" title="{$pageItem.name}">{$pageItem.name}</a></li>
+{/if}
+{/foreach}
+
+</ul></nav>
+</div>
+</div>
+{/if}

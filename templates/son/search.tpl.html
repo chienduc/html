@@ -1,0 +1,30 @@
+{include file="$usertemplate/header.tpl.html"}	
+ <div class="panel panel-primary" id="cusshopproduct">
+    <div class="panel-heading cushead">
+        <h1 class="panel-title custitle" id="panel-title">Danh Sách Sản Phẩm Tìm Kiếm</h1>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+     {if $productItems}
+      {foreach from=$productItems key=i item=product}
+       {assign var=avatar value=$product->getProperty('avatar')}
+         <div class="col-san-pham cussp">
+                <div class="thumbnail custhumnail cussizesp">
+                    <a href="{$product->getUrl($lang)}" title="{$product->getName($lang)}"><h4 style=" text-align:center"><img class="img-thumbnail cusimg" src="/upload/1/products/a_{$avatar}" alt="{$product->getName($lang)}"/></h4></a>
+                    <div class="caption cuscap">
+                    	<p class=""><a id="bangmauan" href="{$product->getUrl($lang)}" class="btn btn-primary cusbtn" role="button" title="{$product->getName($lang)}"></a></p>
+                        <h2 class="cush2"><small class="cusmall"><a href="{$product->getUrl($lang)}" title="{$product->getName($lang)}">{$product->getName($lang)}</a></small></h2>
+                        <p style="margin-bottom:0px">Mã SP: {$product->getSku()}</p>
+                        <p style="color:#00507c"><b>Giá: {$product->getPrice()}  vnđ</b></p>
+                	</div>
+                </div>
+            </div>	
+      {/foreach}
+      {/if}
+       {include file="$usertemplate/page.tpl.html"}    
+        </div>
+    </div>
+</div>
+  </div>
+ {include file="$usertemplate/right.tpl.html"}	            
+{include file="$usertemplate/footer.tpl.html"}	

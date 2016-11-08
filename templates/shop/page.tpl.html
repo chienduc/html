@@ -1,0 +1,24 @@
+{if $rowsPages.pages >1}
+<div class="pager">
+  <div class="pages">
+     <ol>
+      {foreach from=$pager item=pageItem key=i}
+        {if $i eq 0}
+        
+        {elseif $i eq 1}
+        
+        {elseif $i eq $pager|@count-2}
+        
+        {elseif $i eq $pager|@count-1}
+         <li><a class="next i-next" href="{$pageItem.url}" title="Next"> ></a> </li>
+        {elseif $pageItem.current eq 1}
+           <li class="current">{$pageItem.name}</li>
+        {else}
+           <li><a href="{$pageItem.url}" title="{$pageItem.name}">{$pageItem.name}</a></li>
+        {/if}
+       {/foreach}
+     </ol>
+
+    </div>
+ </div>
+ {/if}

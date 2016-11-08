@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin>
+	<author>Mai Minh</author>
+	<name>Send order key</name>
+	<version>1.0</version>
+	<addon>sendkey</addon>
+	<event>ORDER_PAID</event>
+	<publish_date>2000-10-01</publish_date>
+	<description>Send SMS to admin if new order submitted</description>
+</plugin>

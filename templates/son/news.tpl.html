@@ -1,0 +1,32 @@
+ {include file="$usertemplate/header.tpl.html"}	
+                <!-- article box -->
+<div class="panel panel-primary cuscate">
+{if $cateObject}
+ <div class="panel-heading">
+       {include file="$usertemplate/breadcrumb.tpl.html"}
+ </div>
+  <div class="panel-body">
+    {if $listItems}
+    {foreach from=$listItems key=i item=item}
+     {assign var=avatar value=$item->getProperty('avatar')}
+     <div class="media">
+          <div class="media-left">
+            <a title="{$item->getTitle($lang)}" href="{$item->getUrl($lang)}">
+              <img class="media-object" src="/upload/1/articles/l_{$avatar}" alt="{$item->getTitle($lang)}" width="80">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading"><a href="{$item->getUrl($lang)}" title="{$item->getTitle($lang)}">{$item->getTitle($lang)}</a></h4>
+             {$item->getSapo($lang)}
+            <p class="customep">{$item->getDateCreated()|date_format:"%H:%M:%S %d/%m/%Y"} </p>
+          </div>
+        </div>
+      {/foreach}
+     {/if}
+      {include file="$usertemplate/page.tpl.html"}	
+      </div>
+    {/if}
+</div>
+  </div>
+{include file="$usertemplate/right.tpl.html"}	 
+{include file="$usertemplate/footer.tpl.html"}	

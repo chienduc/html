@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <title>{if $pageTitle}{$pageTitle|strip_tags} - {/if}{$estore->getName($lang)}</title>
+	<link rel="shortcut icon" href="{$estore->getProperty('store_logo')}" type="image/x-icon"/>
+    <meta name="keywords" content="{if $pageKeywords}{$pageKeywords|strip_tags}{else}{$estore->getKeywords($lang)}{/if}" />
+<meta name="description" content="{if $pageDescription}{$pageDescription|strip_tags}{else}{$estore->getDescription($lang)}{/if}" />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0"/>
+    <meta name="msvalidate.01" content="EBC36AED0CBA30318BA97C11B36D728B" />
+    <meta name="p:domain_verify" content="fa3ad1fa3eb71b7ec3c3bbacd5a07be0"/>
+    
+    <!-- Bootstrap -->
+    <link href="/{$templatePath}/{$userTemplate}/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/{$templatePath}/{$userTemplate}/css/cssresponsive.css" rel="stylesheet">
+    <link href="/{$templatePath}/{$userTemplate}/css/menu-respons.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- slider -->
+	<link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/styles.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/customecssthem.css" type="text/css" media="screen" />
+    <link rel="author" href="https://plus.google.com/114791908042608533500"/>
+    
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+	
+  </head>
+  <body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- slider va menu top -->
+                 <!-- bgin top menu  sub-->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="row" id="headermobile" style="margin-top:10px;">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="mobile_text" style="display:none">
+    	<p>Mai Thiên Phúc - nhà phân phối sơn số 1 việt nam</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-3 col-xs-3 cusmenu-click" style="padding:0px;">
+    	<div id="menu_mobile_ne" class="glyphicon glyphicon-align-justify" style="font-size:17px;margin:18px 20px 0px;color:#F96302"></div>
+    	<div id="menu_mobile_ne_show" class="swipe ne_show_menu" style="z-index:9999;">
+      {if $listMenus_2}
+	     <div class="swipe-menu">
+             <ul class="links" style="padding-left:0px;">
+            {foreach from=$listMenus_2 item=menuMain key = i} 
+            {assign var=menuChildren value=$menuMain->getChildren()}
+               <li><a href="{$menuMain->getUrl($lang)}" title="{$menuMain->getName($lang)}">{$menuMain->getName($lang)}</a>
+                 {if $menuChildren}
+                    	<ul style="padding-left:10px !important">
+                        {foreach from=$menuChildren item=menuchildren key = j} 
+                        	<li><a href="{$menuchildren->getUrl($lang)}" title="{$menuchildren->getName($lang)}">{$menuchildren->getName($lang)}</a></li>
+                          {/foreach}
+                        </ul>
+                     {/if}
+                    </li>
+                 {/foreach}
+                </ul>
+        	</div>
+            {/if}
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="margin-top:10px;padding:0px">
+    	<p class="logomobile" style="text-align:center"><img src="{$estore->getProperty('store_logo')}" title="{$estore->getName()}" alt="{$estore->getName()}"/></p>
+    </div>
+   
+</div>
+<div class="row" id="headernone">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+       <a href="\" title="{$estore->getName()}"> <img class="img-thumbnail" style="border:none !important" src="{$estore->getProperty('store_logo')}" alt="{$estore->getName()}" /></a>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                     <form action="" method="post" novalidate>
+                        <div class="input-group" style="margin-top:40px">
+                       
+                          <input type="text" name="keywords" {if $keywords} value="{$keywords}"{/if} class="form-control" placeholder="Tìm kiếm sản phẩm" style="border:1px solid #F96302">
+                          <span class="input-group-btn">
+                             <input type="hidden" name="act" id="act" value="search">
+                           
+                            <input type="submit" id="MainContent_ctl00_btnLogin" class="btn btn-default cus_logo_search" value="Tìm kiếm">
+                         </span>
+                        
+                      
+                        </div><!-- /input-group -->
+                         </form>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><img class="img-thumbnail" style="border:none !important;" src="/{$templatePath}/{$userTemplate}/images/slogan-dailyson247.png"/></div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom:5px">
+                <div class="row">
+         {if $listMenus_2}
+          <div id='cssmenu'>
+              <ul>
+              {foreach from=$listMenus_2 item=menuMain key = i} 
+               {assign var=menuChildren value=$menuMain->getChildren()}
+              <li><a href="{$menuMain->getUrl($lang)}" title="{$menuMain->getName($lang)}"><span>{$menuMain->getName($lang)}</span></a>
+                  {if $menuChildren}
+                       <ul> 
+                       {foreach from=$menuChildren item=menuchildren key = j} 
+                       <li> <a title="{$menuchildren->getName($lang)}" href="{$menuchildren->getUrl($lang)}" > {$menuchildren->getName($lang)}</a></li>
+                       {/foreach}
+                       </ul>
+                    {/if}
+                 </li>
+                {/foreach}
+              </ul>
+          </div>
+        {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+                 <ul>
+    <!-- submenu -->
+    <!-- end -->
+</ul>
+</div></div>
+<!-- end submenu_top -->
+            <!-- end menu top -->
+            <div id="leftcontent" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            	<div class="row">
+
+                    <!-- shop category -->
+  {if $comboLeft2}
+<div class="panel panel-primary cuscate customemobile">
+    <div class="panel-heading">
+        <h3 class="panel-title" id="panel-title">Danh mục sản phẩm</h3>
+    </div>
+    <div id="cusnsxmenu" class="panel-body active-mobile">
+        <div id='cssmenuleft' class="panel-body">
+            <ul>
+             {foreach from=$comboLeft2 item=combo key = i} 
+               {assign var=comboChildren value=$combo->getChildren()}
+               <li {if $i >3}class="has-sub"{/if}><a href="{$combo->getUrl($lang)}" title="{$combo->getName($lang)}"><span class="chinh">{$combo->getName($lang)}</span></a>
+                {if $comboChildren}
+                    <ul>
+                     {foreach from=$comboChildren item=combochild key = j} 
+                     	<li><a href="{$combochild->getUrl($lang)}" title="{$combochild->getName($lang)}"><span class="phu">{$combochild->getName($lang)}</span></a></li>
+                      {/foreach}
+                  	</ul>
+                  {/if}
+               </li>
+            {/foreach}
+            </ul>
+        </div>
+    </div>
+</div>
+{/if}
+  </div>
+            </div>
+            <div id="centercontent" class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <!-- banner flash quan cao-->
+   {if $listAd_1}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row" id="cusrow">
+		<ul class="rslides" id="slider1">
+         {foreach from=$listAd_1 key=i item=ads}
+             {assign var=banner value=$ads->getProperty('logo')}
+             {assign var=url value=$ads->getProperty('url')} 
+            <li><img src="/upload/1/resources/l_{$banner}" alt="{$ads->getContent($lang)}" /></li>
+           {/foreach}
+		</ul>
+    </div>
+</div>
+{/if}
+<div class="clearfix"></div>

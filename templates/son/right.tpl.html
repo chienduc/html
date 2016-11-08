@@ -1,0 +1,110 @@
+<div id="rightcontent" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+ <div class="row">
+  <div class="panel panel-primary cuscate">
+   <div class="panel-heading">
+      <h3 class="panel-title custitle" id="panel-title">Liên hệ mua hàng</h3>
+    </div>
+<div class="panel-body cusbodysup active-mobile">
+<div class="panel-body cussup" style=" background:#F1E5D9">
+    <ul>
+       <li class="cusli"><b>Giờ làm việc</b><br/>
+       <b>Sáng: 8h00 đến 12h00</b><br/>
+       <b>Chiều: 13h00 đến 17h00</b></li>
+       <li style="text-align:center">-------------------</li>
+       {if $supportRight}
+       {foreach from=$supportRight key=i item=support}
+       <li class="cussupport">
+          <span><a href="ymsgr:sendim?{$support->getNickYahoo()}" title="{$support->getFullName()}"><img  src="/{$templatePath}/{$userTemplate}/images/yahoo.png" class="cusimgsup" alt="{$support->getFullName()}" title="{$support->getFullName()}"></a></span>
+          <span class="cusskype"><a href="Skype:{$support->getNickSkype()}?chat" title="{$support->getFullName()}"><img src="/{$templatePath}/{$userTemplate}/images/skype.png" class="cusimgskype" title="{$support->getFullName()}" alt="{$support->getFullName()}"></a></span>	
+          <span>
+              <b class="namsup">{$support->getFullName()}</b>
+              <br><div class="cusdt">{$support->getTelephone()}</div><br>
+          </span>
+       </li>
+       {/foreach}
+       {/if}
+      
+       <li style="text-align:center;margin-bottom:5px;font-size:100%"><b>Góp ý</b><br/>
+       <b class="addmail"><a href="mailtp:{$estore->getEmail()}">{$estore->getEmail()}</a></b></li>
+                     
+
+                     
+        </ul>
+    </div>
+</div>
+</div>
+
+
+<div class="panel panel-primary cuscate">
+   
+<div class="panel-body cusbodysup active-mobile">
+<div class="panel-body cussup">
+    <ul>
+                 
+{if $listAd_2}
+{foreach from=$listAd_2 key=i item=ads}
+{assign var=banner value=$ads->getProperty('logo')}
+{assign var=url value=$ads->getProperty('url')} 
+<li class="cusbanner">
+<span><a href="{$url}" title="{$ads->getContent($lang)}"><img class="imagesads" src="/upload/1/resources/l_{$banner}" alt="{$ads->getContent($lang)}"  /></a></span>
+</li>
+{/foreach}
+{/if}  
+<li class="cusbanner linkfb">
+<span>
+<div class="fb-page" data-href="https://www.facebook.com/dailyson247/?fref=ts" data-width="200" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+</span>
+</li>
+                     
+        </ul>
+    </div>
+</div>
+</div>
+
+
+{if $listBanggia}
+<div class="panel panel-primary cuscate">
+   <div class="panel-heading">
+      <h3 class="panel-title custitle" id="panel-title">Bảng Giá Sơn</h3>
+    </div>
+<div class="panel-body cusbodysup active-mobile">
+<div class="panel-body cussup">
+    <ul>
+       {if $listBanggia}
+       {foreach from=$listBanggia key=i item=new}
+       <li class="cussupport">
+          <span><a style="color:black; font-weight:bold" href="{$new->getUrl($lang)}" title="{$new->getTitle($lang)}">{$new->getTitle($lang)}</a></span>  
+       </li>
+       {/foreach}
+       {/if}            
+        </ul>
+    </div>
+</div>
+</div>
+{/if}
+
+{if $leftNews}
+<div class="panel panel-primary cuscate">
+   <div class="panel-heading">
+      <h3 class="panel-title custitle" id="panel-title">Tin tức & Sự Kiện</h3>
+    </div>
+<div class="panel-body cusbodysup active-mobile">
+<div class="panel-body cussup">
+    <ul>
+       {if $leftNews}
+       {foreach from=$leftNews key=i item=new}
+       <li class="cussupport">
+          <span><a style="color:black; font-weight:bold" href="{$new->getUrl($lang)}" title="{$new->getTitle($lang)}">{$new->getTitle($lang)}</a></span>  
+       </li>
+       {/foreach}
+       {/if}            
+        </ul>
+    </div>
+</div>
+</div>
+{/if}
+
+
+
+</div>
+ </div>

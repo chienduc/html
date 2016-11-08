@@ -1,0 +1,29 @@
+{if $result_code}<div class="message">{$amessages.result_code.$result_code}</div>{/if}
+{if $error}<div class="message2">{$error}</div>{/if}
+<div class="formContent">
+<h1>{$locale->msg('add_new_uploadfile')}</h1>
+<form action="/{$aScript}" method="post" name="formAdd" id="formAdd" enctype="multipart/form-data" >
+<fieldset>
+<p><label for="files">{$locale->msg('attachments')}:</label><input type="file" name="files" id="files" /><br clear="all" /></p>
+<br />
+<p class="btn">
+<input type="hidden" name="op" value="newsletter" />
+<input type="hidden" name="act" value="uploadfile" />
+<input type="hidden" name="mod" value="add" />
+<input type="hidden" name="doo" value="submit" />
+<input type="hidden" name="sCode" value="{$sCode}_" />
+<input type="hidden" name="lang" value="{$lang}" />
+<input type="submit" value="{$locale->msg('button_submit')}" title="{$locale->msg('button_submit')}" name="btnSubmit" />
+<input type="reset" value="{$locale->msg('button_reset')}" title="{$locale->msg('button_reset')}" name="btnReset" />
+<input type="button" onClick="javascript:formSubmit('formAdd','list','cancel',0);" value="{$locale->msg('button_cancel')}" title="{$locale->msg('button_cancel')}" name="btnCancel" />
+</p>
+</fieldset>
+</form>
+<p>Note:</p>
+<p>B1: Tải mẫu danh sách <a href="/upload/email/mau.xls" title="Download">Download</a>
+</p>
+<p>B2: Nhập các thông tin email theo mẫu trên</p>
+<p>B3: Chọn Save As: Ở mục <span style="color:#00F; font-size:14px">Save as type :</span> <span style="color:#30C; font-weight:bold; font-size:14px">XML Spreadsheet (*.xml) </span> --> Save ở hoàn tất</p>
+<p>B4: Upload file vừa Save</p>
+
+</div>

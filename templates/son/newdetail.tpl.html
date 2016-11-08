@@ -1,0 +1,44 @@
+ {include file="$usertemplate/header.tpl.html"}	
+  {if $objectItem}
+   <div class="panel panel-primary cuscate">
+  
+    <div class="panel-heading">
+       {include file="$usertemplate/breadcrumb.tpl.html"}
+    </div>
+    <div class="panel-body">
+      <h1 class="panel-title" id="panel-title" style="color:#0B2A63; font-weight:bold; margin-bottom:10px; line-height:25px">{$objectItem->getTitle($lang)}</h1>
+       {$objectItem->getDetails($lang)}
+     </div>
+ </div>
+ 
+ <div class="panel panel-primary cuscate">
+{if $otherItems}
+ <div class="panel-heading">
+        <h1 class="panel-title" id="panel-title">Thông tin liên quan</h1>
+ </div>
+  <div class="panel-body">
+    {if $otherItems}
+    {foreach from=$otherItems key=i item=item}
+     {assign var=avatar value=$item->getProperty('avatar')}
+     <div class="media">
+          <div class="media-left">
+            <a title="{$item->getTitle($lang)}" href="{$item->getUrl($lang)}">
+              <img class="media-object" src="/upload/1/articles/l_{$avatar}" alt="{$item->getTitle($lang)}" width="80">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading"><a href="{$item->getUrl($lang)}" title="{$item->getTitle($lang)}">{$item->getTitle($lang)}</a></h4>
+             {$item->getSapo($lang)}
+            <p class="customep">{$item->getDateCreated()|date_format:"%H:%M:%S %d/%m/%Y"} </p>
+          </div>
+        </div>
+      {/foreach}
+     {/if}
+
+      </div>
+    {/if}
+</div>
+  {/if}
+ </div>
+ {include file="$usertemplate/right.tpl.html"}	          
+ {include file="$usertemplate/footer.tpl.html"}	         

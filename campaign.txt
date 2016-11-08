@@ -1,0 +1,38 @@
+DateCreated           | Id  | Action                         | Send     |Failed  
+2014-03-24 10:43:32   |     |  No campaign
+2014-03-24 10:46:04   | 1   |  No activation email
+2014-03-24 10:46:04   | 1   | Send mail campaign completed.
+2014-03-24 10:46:24   | 1   |  No activation email
+2014-03-24 10:46:24   | 1   | Send mail campaign completed.
+2014-03-24 10:46:27   | 2   | Campaign began running.
+2014-03-24 10:46:33   | 2   | Campaign began running.
+2014-03-24 10:46:48   | 2   | Campaign began running.
+2014-03-24 10:46:51   | 2   | Campaign began running.
+2014-03-24 10:47:14   | 2   | Campaign began running.
+2014-03-24 10:47:24   | 2   | Campaign began running.
+2014-03-24 10:48:18   | 2   | Campaign began running.
+2014-03-24 10:48:55   | 2   | Campaign began running.
+2014-03-24 10:48:55   | 2   | Send mail campaign completed.
+2014-03-24 10:48:56   |     |  No campaign
+2014-03-24 10:48:57   |     |  No campaign
+2014-03-24 10:48:57   |     |  No campaign
+2014-03-24 10:48:58   |     |  No campaign
+2014-03-24 10:48:58   |     |  No campaign
+2014-03-24 10:48:59   |     |  No campaign
+2014-03-24 10:48:59   |     |  No campaign
+2014-03-24 10:49:00   |     |  No campaign
+2014-03-25 10:16:32   |     |  No campaign
+2014-03-25 10:16:34   |     |  No campaign
+2014-03-25 11:29:00   | 1   | Running campaigns.               | 1__:1   | 0__:
+2014-03-25 11:29:02   | 1   | Send mail campaign completed.
+2014-03-25 11:29:03   |     |  No campaign
+2014-03-25 11:29:05   |     |  No campaign
+2014-03-25 11:29:05   |     |  No campaign
+2014-03-25 11:29:06   |     |  No campaign
+2014-03-25 11:29:07   |     |  No campaign
+2014-03-25 11:29:25   | 2   | Campaign began running.
+2014-03-25 11:29:25   | 2   | Running campaigns.               | 1__:2   | 0__:
+2014-03-25 11:29:26   | 2   | Running campaigns.               | 1__:1   | 0__:
+2014-03-25 11:29:28   | 2   | Send mail campaign completed.
+2014-03-25 11:29:28   |     |  No campaign
+2014-03-25 11:29:29   |     |  No campaign

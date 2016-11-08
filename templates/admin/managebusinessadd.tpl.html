@@ -1,0 +1,97 @@
+{if $result_code}<div class="message">{$amessages.result_code.$result_code}</div>{/if}
+{if $error_code}<div class="message2">{$amessages.error_code.$error_code}</div>{/if}
+{if $error}
+{if $error.invalid || $error.message}
+{assign var=input value=$error.INPUT}
+<div class="errorBox">
+<h2>{$locale->msg('error_notes')}:</h2>
+<ul class="listStyle">
+{foreach from=$input item=field}
+{if $field.error}<li>{$field.message}</li>{/if}
+{/foreach}
+<li>{$error.message}</li>
+</ul>
+</div>
+{/if}
+{/if}
+<div class="formContent">
+<h1>{$locale->msg('add_new_business')}</h1>
+<form action="/{$aScript}" method="post" name="formAdd" id="formAdd" enctype="multipart/form-data" >
+<fieldset>
+<p><strong>* {$locale->msg('required_fields')}</strong></p>
+<p{if isset($error.INPUT) && $error.INPUT.username.error} class="errormsg"{/if}><label for="username">* {$locale->msg('username')}: </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.username.value}{/if}" name="username" id="username" /></p>
+<p{if isset($error.INPUT) && $error.INPUT.password.error} class="errormsg"{/if}><label for="title">* {$locale->msg('password')} : </label>
+<input type="password" value="" name="password" id="password" /></p>
+<p{if isset($error.INPUT) && $error.INPUT.cpassword.error} class="errormsg"{/if}><label for="cpassword">* {$locale->msg('confirm_password')} : </label>
+<input type="password" value="" name="cpassword" id="cpassword" /></p>
+<p><label for="status">{$locale->msg('system_status')}:</label>
+<select class="small" name="status" id="status">
+<option value="1"{if isset($error.INPUT) && $error.INPUT.status.value eq 1} selected="selected"{/if}>{$locale->msg('enable')}</option>
+<option value="0"{if isset($error.INPUT) && $error.INPUT.status.value eq 0} selected="selected"{/if}>{$locale->msg('disable')}</option>
+</select></p>
+<p><label for="area">Khu vực:</label>
+<select class="small" name="area_id" id="area_id">
+{$comboArea}
+</select></p>
+<p{if isset($error.INPUT) && $error.INPUT.fullname.error} class="errormsg"{/if}><label for="fullname">* {$locale->msg('fullname')} : </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.fullname.value}{/if}" name="fullname" id="fullname" /></p>
+<p{if isset($error.INPUT) && $error.INPUT.address.error} class="errormsg"{/if}><label for="address">* {$locale->msg('address')}: </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.address.value}{/if}" name="address" id="address" /></p>
+<p{if isset($error.INPUT) && $error.INPUT.email.error} class="errormsg"{/if}><label for="email">* {$locale->msg('email')} : </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.email.value}{/if}" name="email" id="email" /></p>
+<p{if isset($error.INPUT) && $error.INPUT.tel.error} class="errormsg"{/if}><label for="tel">*{$locale->msg('cell')}  : </label>
+<input type="text" class="small" value="{if isset($error.INPUT)}{$error.INPUT.tel.value}{/if}" name="tel" id="tel" /></p>
+<p{if isset($error.INPUT) && $error.INPUT.nick_yahoo.error} class="errormsg"{/if}><label for="nick_yahoo">{$locale->msg('nick_yahoo')} : </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.nick_yahoo.value}{/if}" name="nick_yahoo" id="nick_yahoo" /></p>
+<p{if isset($error.INPUT) && $error.INPUT.nick_skype.error} class="errormsg"{/if}><label for="nick_skype">{$locale->msg('nick_skype')} : </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.nick_skype.value}{/if}" name="nick_skype" id="nick_skype" /></p>
+<p{if isset($error.INPUT) && $error.INPUT.about.error} class="errormsg"{/if}><label for="about">{$locale->msg('body_sapo')}:</label>
+<textarea rows="10" cols="20" name="about" id="about">{if isset($error.INPUT)}{$error.INPUT.about.value}{/if}</textarea></p>
+{literal}<script type="text/javascript">var editor = CKEDITOR.replace('about');</script>{/literal}
+<p><label for="avatar"> {$locale->msg('avatar')}: </label><input type="file"  name="avatar" id="avatar" /></p>
+{if $fieldList}
+<br /><h2>{$locale->msg('list_custom_field')}</h2>
+{foreach key=no from=$fieldList item=field}
+{if isset($error.INPUT)}
+{assign var=field_name value=$field->getName()}
+{$field->displayHTML($error.INPUT.$field_name.value)}
+{else}
+{$field->displayHTML()}
+{/if}
+{/foreach}
+{/if}
+<br />
+<p class="btn">
+<input type="hidden" name="op" value="manage" />
+<input type="hidden" name="act" value="business" />
+<input type="hidden" name="mod" value="add" />
+<input type="hidden" name="doo" value="submit" />
+<input type="hidden" name="sCode" value="{$sCode}_" />
+<input type="hidden" name="lang" value="{$lang}" />
+<input type="submit" value="{$locale->msg('button_submit')}" title="{$locale->msg('button_submit')}" name="btnSubmit" />
+<input type="reset" value="{$locale->msg('button_reset')}" title="{$locale->msg('button_reset')}" name="btnReset" />
+<input type="button" onClick="javascript:formSubmit('formAdd','list','cancel',0);" value="{$locale->msg('button_cancel')}" title="{$locale->msg('button_cancel')}" name="btnCancel" />
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+<div class="tableContent hidden"><center><img src="/{$templatePath}/{$userTemplate}/images/loading.gif" width="36" height="36" alt="Loading" /></center></div>
+<div class="tableContent hidden"><center><img src="/{$templatePath}/{$userTemplate}/images/loading.gif" width="36" height="36" alt="Loading" /></center></div>
+<div class="tableContent hidden">
+<div class="contType"><h2>{$locale->msg('notes')}:</h2>{$locale->msg('notes_clean_trash')}</div>
+<form name="formClean" id="formClean" action="/{$aScript}" method="post">
+<fieldset>
+<input type="hidden" name="op" value="manage" />
+<input type="hidden" name="act" value="business" />
+<input type="hidden" name="mod" value="list" />
+<input type="hidden" name="doo" value="cleantrash" />
+<input type="hidden" name="lang" value="{$lang}" />
+<p class="btn"><input type="submit" value="{$locale->msg('button_ok')}" title="{$locale->msg('button_ok')}" name="btnSubmit2" />
+<input type="button" onClick="javascript:formSubmit('formClean','list','cancel',0);" value="{$locale->msg('button_cancel')}" title="{$locale->msg('button_cancel')}" name="btnCancel" />
+</p>
+</fieldset>
+</form>
+</div>
+</div>

@@ -1,0 +1,85 @@
+{if $result_code}<div class="message">{$amessages.result_code.$result_code}</div>{/if}
+{if $error_code}<div class="message2">{$amessages.error_code.$error_code}</div>{/if}
+<!--{if $uId}<p><a href="/{$aScript}?op=manage&act=article&mod=list&uId={$gfId}" title="{$locale->msg('back_group')}"><img src="/{$templatePath}/{$userTemplate}/images/icon_parent.png" alt="{$locale->msg('back_group')}" width="32" height="32" />...{$locale->msg('back')}</a></p>{/if}-->
+{if $listItems}
+<form action="/{$aScript}" method="post" name="formType" id="formType">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+<th><input type="checkbox" name="all" id="all" value="1" class="box3" onClick="toggleAllChecks('formType');" /></th>
+<th>{$locale->msg('numbers')}</th>
+<th><a href="javascript:void(0)" onClick="javascript:MM_sortField('parent','{$sk}','id','{if $sd eq "DESC"}ASC{else}DESC{/if}');" title="{$locale->msg('arrangement_by_code')}">{$locale->msg('code')}</a>{if $sk eq "id"}{if $sd eq "DESC"}&darr;{else}&uarr;{/if}{/if}</th>
+<th>{$locale->msg('name_customer')}</th>
+<th>{$locale->msg('address')}</th>
+<th>{$locale->msg('telephone')}</th>
+<th>{$locale->msg('email_add')}</th>
+<th>{$locale->msg('date_order')}</th>
+<th><a href="javascript:void(0)" onClick="javascript:MM_sortField('parent','{$sk}','status','{if $sd eq "DESC"}ASC{else}DESC{/if}');" title="{$locale->msg('arrangement_by_status')}">{$locale->msg('status_order')}</a>{if $sk eq "status"}{if $sd eq "DESC"}&darr;{else}&uarr;{/if}{/if}</th>
+<th>{$locale->msg('actions')}</th>
+</tr>
+</thead>
+<tbody>
+{foreach key=no from=$listItems item=item}
+<tr{if $no%2 eq 0} class="bgType"{/if}>
+<td><input type="checkbox" name="ids[]" id="ids[]" value="{$item->getId()}" class="box3" /></td>
+<td>{$startNum+$no}</td>
+<td>{$item->getId()}</td>
+<td>{$item->getName()}</td>
+<td>{$item->getAddress()}</td>
+<td>{$item->getTel()}</td>
+<td>{$item->getEmail()}</td>
+<td>{$item->getDateCreated()}</td>
+<td>{$item->getStatusTextBackend()}</td>
+<td>
+<a href="/{$aScript}?op=manage&act=order&mod=edit&id={$item->getId()}&lang={$lang}" title="{$locale->msg('edit')}"><img src="/{$templatePath}/{$userTemplate}/images/ico_edit.png" alt="{$locale->msg('edit')}" width="16" height="16" /></a>
+<a href="/{$aScript}?op=manage&act=order&mod=view&id={$item->getId()}&lang={$lang}" title="{$locale->msg('view_detail')}"><img src="/{$templatePath}/{$userTemplate}/images/ico_view.png" alt="{$locale->msg('view_detail')}" width="16" height="16" /></a>
+<a href="javascript:formSubmit('formType','list','complete',{$item->getId()});" title="{$locale->msg('completed_orders')}"><img src="/{$templatePath}/{$userTemplate}/images/ico_enable.png" alt="{$locale->msg('completed_orders')}" width="16" height="16" /></a>
+<a href="javascript:formSubmit('formType','list','disable',{$item->getId()});" title="{$locale->msg('disable')}"><img src="/{$templatePath}/{$userTemplate}/images/ico_disable.png" alt="{$locale->msg('disable')}" width="16" height="16" /></a>
+<a href="javascript:formSubmit('formType','list','delete',{$item->getId()});" title="{$locale->msg('delete')}"><img src="/{$templatePath}/{$userTemplate}/images/ico_delete.png" alt="{$locale->msg('delete')}" width="16" height="16" /></a>
+</td>
+</tr>
+{/foreach}
+</tbody>
+</table>
+<div class="paging">
+<p class="listBtn">
+<a title="{$locale->msg('button_enable')}" href="javascript:void(0);" onClick="javascript:formSubmit('formType','list','enable','0');;">{$locale->msg('button_comple')}</a>
+<a title="{$locale->msg('button_disable')}" href="javascript:void(0);" onClick="javascript:formSubmit('formType','list','disable','0');">{$locale->msg('button_disable')}</a>
+<a title="{$locale->msg('button_delete')}" href="javascript:void(0);" onClick="javascript:formSubmit('formType','list','delete','0');">{$locale->msg('button_delete')}</a>
+</p>
+{include file="$userTemplate/corepager.tpl.html" title=pager}
+</div>
+<div class="infoType2">
+{include file="$userTemplate/corecomboipp.tpl.html" title=ipp}
+<div class="listCategory">
+<select name="status">
+<option value="" selected="selected">----- {$locale->msg('select_status')} -----</option>
+<option value="3" >{$amessages.status_payment.3}</option>
+<option value="4" >{$amessages.status_payment.4}</option>
+<option value="5" >{$amessages.status_payment.5}</option>
+<option value="6" >{$amessages.status_payment.6}</option>
+<option value="7" >{$amessages.status_payment.7}</option>
+<option value="1" >{$amessages.status_payment.1}</option>
+<option value="0" >{$amessages.status_payment.0}</option>
+<option value="2" >{$amessages.status_payment.2}</option>
+</select>
+<input type="button" value="{$locale->msg('button_move')}" title="{$locale->msg('button_move')}" class="btnSubmit2" name="btnSubmit2" onClick="javascript:formSubmit('formType','list','changegroup','0');" />
+</div>
+</div>
+<input type="hidden" name="op" value="manage" />
+<input type="hidden" name="act" value="order" />
+<input type="hidden" name="mod" value="list" />
+<input type="hidden" name="uId" value="{$uId}" />
+<input type="hidden" name="doo" value="" />
+<input type="hidden" name="kw" value="{$kw}" />
+<input type="hidden" name="lang" value="{$lang}" />
+<input type="hidden" name="ipp" value="{$ipp}" />
+<input type="hidden" name="sk" value="{$sk}" />
+<input type="hidden" name="sd" value="{$sd}" />
+<input type="hidden" name="pg" value="{$pg}" />
+<input type="hidden" name="id" value="" />
+</form>
+{else}
+{$locale->msg('no_record')}
+{/if}
+</div>

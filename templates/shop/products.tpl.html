@@ -1,0 +1,129 @@
+{include file="$usertemplate/header.tpl.html"}	
+<div class="main-container col1-layout card-background-container">
+			<div>
+				<div class="container-inner">
+					<div class="main">
+						<div class="breadcrumbs">
+    <ul>
+                    <li class="home">
+                            <a href="https://www.castlery.com/" title="Go to Home Page">Home</a>
+                                        <span>> </span>
+                        </li>
+                    <li class="category58">
+                            <strong>Lighting</strong>
+                                    </li>
+            </ul>
+</div>
+
+						<div class="col-main">
+														
+
+    <div class="category-banner" style="background-image: url('https://www.castlery.com/media/catalog/category/lighting_1.jpg');background-size:cover">
+        <h2>Lighting</h2>
+        <span></span>
+                    <p class="category-description std">
+                Light is the magical ingredient that brings a space to life. Pendants, desk lamps, industrial looking bulbs, we have them all. Let our pendants soar like watchful guardians and our desk lamps keep you company through the long night.             </p>
+            </div>
+  <script type="text/javascript">
+    var awLnUpdaterInstance = new awLnUpdater();
+  </script>
+  <div class="cateFilterTop clearfix">
+    <div class="cateFilterTop__hr"></div>
+    <div class="cateFilterTop__filter">
+      <a class="cateFilterTop__toggle">
+        <svg><use xlink:href="images/svg-icons.svg#list"></use></svg>
+        Filter
+      </a>
+          </div>
+        <div class="cateFilterTop__sort">
+      Sort by price :
+              <a href="https://www.castlery.com/lighting.html?dir=desc&order=price">High</a>
+            |
+              <a href="https://www.castlery.com/lighting.html?dir=asc&order=price">Low</a>
+      
+          </div>
+  </div>
+  
+  {include file="$usertemplate/left.tpl.html"}	
+
+
+
+<!--    -->
+    <div class="category-products clearfix">
+            
+    <!-- product list -->
+
+<div class="product-list">
+  <div class="product-list-line clearfix">
+      {if $productItems}
+      {foreach from=$productItems key=i item=item}
+       {assign var=avatar value=$item->getProperty('avatar')}                   
+          <div class="product-list-amount col-lg-3 col-xs-6 col-md-4 col-sm-4">
+             <div class="product-list-img products">
+                 <a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}">
+                    <span class="product-image">
+                      <img class="lazy" src="images/sample/loader.gif" data-src="/upload/1/products/l_{$avatar}" width="330" alt="{$item->getName($lang)}" />
+                    </span>
+                           
+                   <span class="product-image image-rotator">
+                         <img src="/upload/1/products/l_{$avatar}" width="330" alt="{$item->getName($lang)}" />
+                   </span>
+                  </a>
+              </div>
+              <div class="product-list-price product-list-price-name col-xs-12 col-md-12 col-sm-12">
+                <p> <a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}">{$item->getName($lang)}</a>
+                     <sup class="product-list-item-new">New</sup>
+                </p>
+              <div class="price-box">
+                    <span class="regular-price" id="product-price-3060"> <span class="price">$139</span>  </span>
+               </div>
+               <div class="typical-retail-price">Typical Retail Price: <span>$299</span></div>
+            </div>
+         </div>
+        {/foreach}
+     {/if}
+</div>
+        <div class="product-lpage">
+            <div class="toolbar">
+        <div class="sorter">
+        <div class="sort-by hidden-xs">
+            <label>Sort By</label>
+            <select onchange="setLocation(this.value)">
+                            <option value="https://www.castlery.com/lighting.html?dir=asc&amp;order=position" selected="selected">
+                    Position                </option>
+                            <option value="https://www.castlery.com/lighting.html?dir=asc&amp;order=name">
+                    Name                </option>
+                            <option value="https://www.castlery.com/lighting.html?dir=asc&amp;order=price">
+                    Price                </option>
+                        </select>
+                            <a href="https://www.castlery.com/lighting.html?dir=desc&amp;order=position" title="Set Descending Direction"><img src="images/i_asc_arrow.gif" alt="Set Descending Direction" class="v-middle" /><i class="fa fa-long-arrow-up"></i></a>
+                    </div>
+    </div>
+        
+{include file="$usertemplate/page.tpl.html"}	
+        
+        
+   </div>
+  </div>
+ </div>
+</div>
+
+<script type="text/javascript">
+        $jq(document).ready(function() {
+            window.criteo_q = window.criteo_q || [];
+            window.criteo_q.push(
+                {event: "setAccount", account: 25682},
+                {event: "setHashedEmail", email: "" },
+                {event: "setSiteType", type: window.siteType},
+                {event: "viewList", item: ["51850004","51850005","51850006","41050012-BLK","41050012-WH","41050022","41050007","41050023","41050025-CY","41050025-BLK","41050025-WH","41050025-MT","41050008-WH","41050008-BLK","41050021","41050006","41050005","41050028-MT","41050028-BLK","41050028-CY","41050028-WH","41050024","41050029","PB-OT0001"]}
+            );
+        });
+    </script>
+
+	 </div>
+	 </div>
+	</div>
+	</div>
+  </div>                      
+</div> 
+{include file="$usertemplate/footer.tpl.html"}	

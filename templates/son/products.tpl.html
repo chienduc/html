@@ -1,0 +1,35 @@
+{include file="$usertemplate/header.tpl.html"}	
+ <div class="panel panel-primary" id="cusshopproduct">
+    <div class="panel-heading cushead">
+      {include file="$usertemplate/breadcrumb.tpl.html"}	  
+    </div>
+    <div class="panel-body">
+        <div class="row">
+     {if $productItems}
+      {foreach from=$productItems key=i item=item}
+       {assign var=avatar value=$item->getProperty('avatar')}
+         <div class="col-san-pham cussp">
+                <div class="thumbnail custhumnail">
+                    <a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}"><h4 style=" text-align:center"><img class="img-thumbnail cusimg" src="/upload/1/products/a_{$avatar}" alt="{$item->getName($lang)}" /></h4></a>
+                    <div class="caption cuscap">
+                    	<p class=""><a id="bangmauan" href="{$item->getUrl($lang)}" class="btn btn-primary cusimg" role="button" title="{$item->getName($lang)}"></a></p>
+                        <h2 class="cush2"><a href="{$item->getUrl($lang)}" title="{$item->getName($lang)}">{$item->getName($lang)}</a></h2>
+                        <p style="margin-bottom:0px;font-size:80%; margin-top:10px; text-align:left">Mã SP: <span style=" font-weight:bold">{$item->getSku()}</span></p>
+                        
+                      {if $item->getMarketPrice()>0}<p style="color:#00507c;font-size:80%; text-align:left; margin-bottom:0px"><b>Giá cũ: <span style=" font-weight:bold; color:#666; font-size:14px; text-decoration:line-through">{$item->getMarketPrice()|number_format}  vnđ</span></b></p>{/if}
+                        
+                        <p style="color:#00507c;font-size:80%; text-align:left"><b>Giá: <span style=" font-weight:bold; color:red; font-size:14px">{if $item->getPrice()>0}{$item->getPrice()|number_format}  vnđ{else}Liên hệ{/if}</span></b></p>
+                       
+                    </div>
+                     <p class="p-product1"><a id="bangmauan" href="{$item->getUrl($lang)}" class="btn btn-primary cusimg" role="button" title="{$item->getName($lang)}">Xem chi tiết</a></p>
+                </div>
+            </div>	
+      {/foreach}
+      {/if}
+       {include file="$usertemplate/page.tpl.html"}    
+        </div>
+    </div>
+</div>
+  </div>
+ {include file="$usertemplate/right.tpl.html"}	            
+{include file="$usertemplate/footer.tpl.html"}	

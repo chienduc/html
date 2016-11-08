@@ -1,0 +1,14 @@
+ {include file="$usertemplate/header.tpl.html"}	
+ <div class="panel panel-primary" style="margin-bottom:10px;border-color:#F96302">
+{if $aboutusItem}
+    <div class="panel-heading" style="background:none !important;border-color:#289ed8">
+        <h3 class="panel-title" id="panel-title" style="font-size:14px;color:#289ed8 !important;font-weight:bold">{$aboutusItem->getTitle($lang)}</h3>
+    </div>
+    <div class="panel-body">
+           {$aboutusItem->getDetails($lang)}
+    </div>
+  {/if}
+</div>
+ </div>
+{include file="$usertemplate/right.tpl.html"}	 
+{include file="$usertemplate/footer.tpl.html"}	

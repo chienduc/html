@@ -1,0 +1,375 @@
+@import url("base/jquery.ui.base.css");
+/******** Default Behaviour Tags ********/
+/****************************************/
+/* RESET STYLE */
+
+*				{margin:0; padding:0; font-family: Arial, Helvetica, sans-serif; color:#555; outline:none;}
+body			{font-size:11px; background:#fff}
+a				{color:#CC6600; text-decoration:none}
+a:hover			{text-decoration:underline}
+select, input, textarea	{font-family: Arial, Helvetica, sans-serif; color:#555; border:#ccc solid 1px; font-size:11px; }
+input, textarea {padding:2px 1px 2px 2px;}
+h1{color:#000; font-size:20px; line-height:normal; margin:0 0 10px}
+h2{font-size:15px; color:#333; margin:0 0 10px;}
+h3{font-size:13px; color:#333; margin:0 0 10px;}
+h4{font-size:12px; color:#333; margin:0 0 10px;}
+h5, h6{font-size:11px; color:#333; margin:0 0 10px}
+img, fieldset{border:0}
+option{padding:1px}
+.hidden{display:none;}
+/***********/
+ol, ul{list-style-type:none;}
+dt{font-weight:bold; text-transform:uppercase;} 
+/***********/
+th, td{text-align:left; padding:5px;}
+	thead{font-weight:bold;}
+p{line-height:16px;}
+/********** Common Classes ********/
+.clear{height:0; clear:both; padding:0; margin:0; line-height:0;}
+
+
+
+/********** Common Structure (for all templates) ********/
+	/************header
+	****************************/
+	#header{ background:url(../images/bgd_header.jpg) 100% 0 no-repeat #FFCC00; height:64px; border-bottom:#fff solid 1px; position:relative }
+	#header h1 { position:absolute; left:15px; top:10px; }
+	.topnav { margin-left:290px; background:url(../images/whiteleftcurve.gif) 0 0 no-repeat #fff; height:17px; padding:1px 15px 0 15px }
+	.topnav li{ display:block; float:left; background:url(../images/ico_arrow_01.gif) 0 5px no-repeat; padding:0 0 0 7px; margin-right:10px; font-weight:bold }
+	.topnav li a { color:#333; }
+	.topnav li a:hover { text-decoration:none; color:#cc6600 }
+	
+	/************nav
+	****************************/	
+	#nav{background:#555; height:32px; margin-bottom:1px}
+	#nav li{display:block; float:left; border-right:#828282 solid 1px;}
+	#nav li a{display:block; float:left; padding:7px 15px; line-height:18px; font-weight:bold; color:#fff;}
+	#nav li a:hover, #nav .current a{background:#8b827d; text-decoration:none}
+				
+		/* Just sub menu links */
+		#subMenusContainer a, #nav li li a{text-align:left;}
+		
+		/* All menu links on hover or focus */
+		#nav a:hover, #nav a:focus, #subMenusContainer a:hover, #subMenusContainer a:focus, #nav a.mainMenuParentBtnFocused, #subMenusContainer a.subMenuParentBtnFocused{
+			color:#fff; text-decoration:none
+		}
+		
+		/* sub menu links on hover or focus */
+		#nav a.mainMenuParentBtnFocused, 
+		#nav li a:hover,
+		#nav li a:focus{color:#fff; text-decoration:none; background:#8b827d }
+		#subMenusContainer a:hover, 
+		#subMenusContainer a:focus, #subMenusContainer a.subMenuParentBtnFocused{color:#fff; text-decoration:none;}
+		
+	
+		/* Parent Sub Menu Links ---[javascript users only]*/
+		.subMenuParentBtn{ }
+		
+		/* Parent Sub Menu Links on hover or focus ---[javascript users only]*/
+		.subMenuParentBtnFocused{ }
+		
+		/* Parent Main Menu Links ---[javascript users only]*/
+		.mainMenuParentBtn{}
+		
+		/* Parent Main Menu Links on hover or focus ---[javascript users only]*/
+		.mainMenuParentBtnFocused{text-decoration:none;}
+		
+		/* ----[ OLs ULs, LIs, and DIVs ]----*/
+		
+		/* Submenu Outer Wrapper - each submenu is inside a div with this class - javascript users only */
+		.smOW{ display:none; position: absolute; overflow:hidden;}
+		
+		/* All ULs and OLs */
+		#nav ul, #nav ol, #subMenusContainer ul, #subMenusContainer ol { padding: 0; margin: 0; list-style: none;	line-height: 1em;}
+		
+		#subMenusContainer ul {padding:5px 0}
+		
+		/* All submenu OLs and ULs */
+		#nav ol, #nav ul, #subMenusContainer ul, #subMenusContainer ol {background:#8b827d; left:0; border-radius: 0 0 10px 10px; -moz-border-radius: 0 0 10px 10px; -webkit-border-radius: 0 0 10px 10px;}
+		
+		/* List items in main menu --[for non-javascript users this applies to submenus as well]  */
+		#nav li {position:relative;}
+		#nav .first{background:none; padding-left:0}
+		/* main menu ul or ol elment */
+		#nav{display:block; z-index:5;}
+		
+		#subMenusContainer{	display:block; 	position:absolute;	top:0;	left:0;	width:100%;	height:0;	overflow:visible;	z-index:9999; font-size:11px;}
+		#subMenusContainer li a{padding:5px 15px; width:200px; color:#ddd; display:block}
+		/* --------------------------[ The below is just for non-javscript users ]--------------------------*/
+		#nav li li{	float:none; }
+		
+		#nav li li a{ /* Just submenu links*/	position:relative;	float:none;}
+		
+		#nav li ul { /* second-level lists */
+			position: absolute;	width: 10em; margin-left: -1000em; /* using left instead of display to hide menus because display: none isn't read by screen readers */
+			margin-top:2.2em;
+		}
+		
+		/* third-and-above-level lists */
+		#nav li ul ul {margin: -1em 0 0 -1000em;}
+		#nav li:hover ul ul {margin-left: -1000em; }
+		
+		 /* lists nested under hovered list items */
+		#nav li:hover ul{margin-left: 0; }
+		#nav li li:hover ul {margin-left: 10em; margin-top:-2.5em;}
+		
+		/* extra positioning rules for limited noscript keyboard accessibility */
+		#nav li a:focus + ul {  margin-left: 0; margin-top:2.2em; }
+		#nav li li a:focus + ul { left:0; margin-left: 1010em; margin-top:-2.2em;}
+		#nav li li a:focus {left:0;  margin-left:1000em; width:10em;  margin-top:0;}
+		#nav li li li a:focus {left:0; margin-left: 2010em; width: 10em;  margin-top:-1em;}
+		#nav li:hover a:focus{ margin-left: 0; }
+		#nav li li:hover a:focus + ul { margin-left: 10em; }
+		
+
+	/************main
+	****************************/
+	#main {width:100%; overflow:hidden; padding-bottom:10px}
+	
+	/************lev
+	****************************/
+	#lev{width:200px; float:left;}
+	#lev li{display:block; background:url(../images/ico_arrow_01.gif) 10px 12px no-repeat; padding:7px 0 7px 20px; font-weight:bold; border-bottom:#ccc dotted 1px;}
+	#lev li a { color:#333; display:block; padding-right:10px }
+	#lev li a:hover { text-decoration:none; color:#CC6600 }
+	#lev li ul{ padding-top:5px }
+	#lev li li { font-weight:normal; border-bottom:none; background-position: 5px 8px; padding:3px 0 3px 15px; }
+	#lev .current { background:url(../images/ico_arrow_02.gif) 10px 12px no-repeat;}
+	#lev .current .current { background-position:5px 8px }
+	#lev .current>a, #lev .current2>a {color:#CC6600}
+	#lev .currentsub { background-color:#fff; border-radius: 5px 0 0 5px; -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px }
+	#lev p{padding: 0 0 0 10px;}
+	.levInner {background: none repeat scroll 0 0 #EBEBEB;border-radius: 0 10px 10px 0;padding: 10px 0;width: 100%;margin: 0 0 10px 0;}
+	
+	/************content
+	****************************/
+	#content{ margin:0 15px 0 215px;}
+	#content p{ margin-bottom:10px }
+	.left-content-right .innerContent, .content-right .innerContent{ margin-right:215px; }
+	.content-right #content { margin-left:15px; }
+	.content #content { margin:0 15px; }
+
+	.contType { border:#555 solid 1px; padding:10px; margin-bottom:15px }
+	.tableContent table{margin:0 0 15px 0; border-bottom:#c8cfd9 solid 3px;}
+		.tableContent td input{width:30px; height:14px; float:left; margin:0 3px 0 0; text-align:right}
+		.tableContent td .position{width:30px; height:14px; float:left; margin:0 3px 0 0; text-align:right}
+		.tableContent td .price{width:70px; height:14px; float:left; margin:0 3px 0 0; text-align:right}
+		.tableContent th{padding:7px 5px; background:#c8cfd9; color:#000;}
+		.tableContent th a{color:#000; text-decoration:underline}
+		.tableContent th a:hover{color:#000; text-decoration:none}		
+		.tableContent td{padding:4px 4px; border-bottom:#dedede  solid 1px; color:#666}
+		.tableContent td img{margin:0 1px;}
+		.tableContent td a{color:#666}
+		.tableContent td a:hover{color:#DC4B1C}
+		.tableContent .bgType td{background:#ebe9e9}
+		.tableContent .box3{width:13px; height:13px; border:none; padding:0; margin:0}
+		.tableContent td .btnOK{width:40px; height:20px; background:#ef8710; margin:0; padding:0; font-size:0.912em; font-weight:bold; cursor:pointer; color:#fff; border:#e07a04 solid 1px;}
+		.tableContent td p{width:100px; display:block; overflow:hidden}
+	
+			
+	/* error box ------------*/
+	.errorBox { border:#cc0000 solid 1px; padding:10px 10px 10px 40px; background:url(../images/error_icon.gif) 10px 10px no-repeat #FFCCCC; margin-bottom:15px; }
+
+	/* info box ------------*/
+	.infoBox { border: #33CC00 solid 1px; padding:10px 10px 10px 40px; background:url(../images/success_icon.png) 10px 10px no-repeat #ebf8a4; margin-bottom:15px; }
+	
+	/* bradcrumb --------*/
+	.breadcrumb { width:100%; overflow:hidden; margin:0 0 20px; padding:15px 0 0 0 }
+	.breadcrumb li{display:block; float:left; background:url(../images/ico_arrow_01.gif) 100% 5px no-repeat; font-weight:bold; padding:0 15px 0 0; margin-right:10px}
+	.breadcrumb .last { background:none }
+	
+	/*********************/
+	.latestUpdate { float:right; margin:0 0 5px 10px }
+	.latestUpdate table { background:#333; }
+	.latestUpdate td{ background:#fff; text-align:left; vertical-align:top }
+	
+	.formContent fieldset p { width:100%; overflow:hidden }
+	.formContent fieldset .left {width: 50%; float:left; }
+	.formContent fieldset .right {width: 50%; float:right; }
+	.formContent fieldset label { width: 200px; float:left; margin-right:10px; text-align:right }
+	.formContent fieldset input { width:350px; float:left; margin-right:5px }
+	.formContent fieldset p #dynamicInput { width:500px; float:left; margin-right:5px }
+	.formContent fieldset .long{ width:470px; float:left; margin-right:5px }
+	.formContent fieldset select { width:200px; float:left; }
+	.formContent fieldset .small { width:120px; float:left; }
+	.formContent fieldset .verysmall { width:50px; float:left; }
+	.formContent fieldset .medium { width:200px; float:left; }
+	.formContent fieldset textarea {width:350px; float:left; height:100px;}
+	.formContent fieldset .large {width:470px; float:left; height:200px;}
+	.formContent fieldset .box {width:13px; height:13px; border:none; margin-top:2px;}
+	.formContent fieldset .lbl { width:auto; margin-right:10px; }
+	.formContent fieldset .btn { padding-left:210px; width:80%; }
+	.formContent fieldset .btn input { width: auto; float:none; padding:4px 10px; background:#555; color:#fff; font-weight:bold; border:none; cursor:pointer }
+	.helpIcon{ float:left; position:relative; }
+	.helpIcon:hover .alertPopup {display:block;}
+	.alertPopup {display:none; position:absolute; left:10px; top:12px; width:200px; background:#fafafa; border:#999 solid 1px; padding:0 10px 10px 10px}
+	.alertPopup h4{ padding:3px 10px; color:#fff; margin:0 -10px 5px -10px; display:block; background:#F27F1A;}
+	.boxTyle { width:100%; margin-bottom:10px; min-height:20px; }
+	#dynamicInput { padding-left:210px; overflow:hidden }
+	#listPhoto { padding-left:210px; overflow:hidden }
+	
+	.errormsg label { color:#F00 }
+	.errormsg input, .errormsg select, .errormsg textarea { border:#F00 solid 1px }
+	
+	.message {border-bottom:3px solid #84A7DB; border-top:3px solid #84A7DB; padding:10px 10px 10px 45px; margin-bottom:15px;  background: url(../images/notice-info.png) no-repeat 4px center #C3D2E5; font-weight:bold; color:#0055BB}
+	
+	.message2 {border-bottom:3px solid #DE7A7B; border-top:3px solid #DE7A7B; padding:10px 10px 10px 45px; margin-bottom:15px;  background: url(../images/notice-alert.png) no-repeat 4px center #E6C0C0; font-weight:bold; color:#CC0000}
+	
+	.paging {width:100%; overflow:hidden; }
+	.paging li {display: block;float: left;margin-bottom: 5px;margin-right: 5px;}
+	.paging li a {border: 1px solid #CCCCCC;color: #555555;display: block;float: left;height: 15px;padding: 1px 5px;}
+	.paging li a:hover {background: none repeat scroll 0 0 #CCCCCC;color: #FFFFFF;text-decoration: none;}
+	.paging li .paging {color:#cc6600; text-decoration:none}
+	.paging .current {font-weight: bold;padding: 2px 4px}
+	.first{padding-top: 5px}
+	.listBtn{float:right;}
+	.listBtn a{display:block; float:left; background:#555; color:#fff; font-weight:bold; padding:3px 7px; margin-left:10px}
+	.listBtn a:hover {text-decoration:none}
+	
+	/*********************/
+	.tabContent{width:100%; position:relative}
+	.tabs{width:100%; overflow:hidden; margin-bottom:10px; border-bottom:#EF8710 solid 2px;}
+	.tabs li{display:block; float:left; margin-right:2px;}
+	.tabs li a{display:block; float:left; background:#555; color:#ccc; padding:5px 10px; font-weight:bold; border-radius: 5px 5px 0 0}
+	.tabs li a:hover{color:#fff; text-decoration:none}
+	.tabs .current a{background:#EF8710; color:#fff}
+	
+	.search{position:absolute; right:0; top:0}
+	.search input{float:left; margin-right:5px; width:100px; height:15px}
+	.search select{float:left; margin-right:5px; min-width:150px; height:20px; padding:2px}
+	.search .btnSearch{width:70px; border:none; margin:0; background:#EF8710; color:#fff; cursor:pointer; height:21px; font-weight:bold}
+	
+	/*********************/
+	.contType2{width:100%; overflow:hidden; margin-bottom:15px;}
+	.contType2 h3{border-bottom:#ccc solid 2px; padding-bottom:5px;}
+	.contType2 h3 a{float:right; font-weight:normal; font-size:0.912em}
+	.infoType{width:47%; float:left; margin-right:5%}
+	.infoType.last{margin-right:0}
+	.infoType fieldset{width:100%; overflow:hidden; margin-bottom:10px;}
+	.infoType fieldset input{width:200px; float:left; margin-right:5px; height:15px;}
+	.infoType fieldset .btnSubmit{width:70px; border:none; margin:0; background:#555; color:#fff; cursor:pointer; height:21px}
+	
+	.tblType th{background:#C8CFD9; padding:7px 5px; border-bottom:#dedede solid 1px;}
+	.tblType td{border-bottom:#dedede solid 1px;}
+	.tblType .bgType td{background:#EBE9E9}
+	
+	/************context
+	****************************/
+	#contextual{width:200px; float:right; margin:0;}
+	.contextInfo { border:#ebebeb solid 1px; border-top:none; padding:10px }
+	#contextual h2 { font-size:13px; background:#ebebeb; padding:3px 10px; margin:0; border-radius: 0 10px 0 0; -moz-border-radius: 0 10px 0 0; -webkit-border-radius: 0 10px 0 0}
+	.listStyle li {background:url(../images/ico_li.gif) 0 6px no-repeat; padding:0 0 0 10px; margin:0 0 7px 0}
+	
+	/************footer
+	****************************/
+	#footer{width:100%; padding:15px 0; text-align:center; background:#555}
+	#footer ul{width:100%; overflow:hidden; margin-bottom:8px; text-align:center;}
+	#footer li{display:inline; padding:0 7px; border-left:#828282 solid 1px}
+	#footer li:first-child {border:none}
+	#footer li a{color:#ccc}
+	#footer li a:hover{color:#fff; text-decoration:none}
+	#footer p{color:#ccc}
+	
+	/*------ User type */
+	.statusStaff{}
+	.statusAdmin{color:#009933}
+	.statusFounder{color:#FF0000}
+	.statusSiteStaff{font-weight:bold}
+	.statusSiteAdmin{font-weight:bold; color:#009933}
+	.statusSiteFounder{font-weight:bold; color: #FF0000}
+	.statusEnabled{}
+	.statusDisabled{color:#FF0000}
+	.statusDeleted{font-weight:bold; color:#FF0000;}
+	.statusDestroyed{font-weight:bold; color:#380606}
+	.statusCompleted{font-weight:bold; color:#009900}
+	.statusNotpayment{}
+	.statusPayment{ color:#009900}
+	.statusDelivery{color:#0023fb}
+	.statusDelived{font-weight:bold; color:#0023fb}
+	/* items per page -----*/
+	.infoType2{width:100%; overflow:hidden; margin-bottom:10px;}
+	.item-pages{float:left; overflow:hidden}
+	.item-pages label{display:block; float:left; margin-right:10px; padding-top:3px}
+	.item-pages select{float:left; margin-right:10px; width:60px; height:20px; padding:2px}
+	.listCategory{float:right; overflow:hidden}
+	.listCategory select{float:left; margin-right:5px; min-width:150px; height:20px; padding:2px}	
+	.listCategory .btnSubmit2{width:70px; border:none; margin:0; background:#555; color:#fff; cursor:pointer; height:21px; font-weight:bold}
+	
+	.btn input {background: none repeat scroll 0 0 #555555; border: medium none;color: #FFFFFF; cursor: pointer; font-weight: bold; height: 21px; margin: 0 5px 0 0; width: 70px;}
+	.datetime{color:#fff; float:right; padding: 8px 10px 0 10px}
+	.datetime strong{color:#fff;}
+	.datetime a{color:#fff; text-decoration:underline}
+	.underline{text-decoration:underline}
+	
+	/***** Form View Order ***********/
+	.formView { width:100%; overflow:hidden }
+	.formView p{ font-size:12px; margin-left:10px;}
+	.formView strong{ color:#0330fd; text-transform:none}
+	.formView label { width: 120px; float:left; margin-right:10px; text-align:left }
+	.formView .infoCustomer{width:49%; float:left; border: 1px solid #CCCCCC}
+	.formView .infoCustomer h3{margin:5px 0 10px 10px; }
+	.formView .infoOrder{width:49%; float:right; border: 1px solid #CCCCCC}
+	.formView .infoOrder h3{margin:5px 0 10px 10px}
+	.formView .infoOrder table{ width:96%; margin:5px 0 10px 10px}
+	.infoOrder td .last{ float:right}
+	
+	/* popup2 -------------*/
+	.popup2{width:480px; position:absolute; left:0; top:-10000px; background:#fff; padding:10px; border:#EF8710 solid 2px;}
+	.btnClose2{text-align:right; margin-bottom:10px; }
+	.btnClose2 a{text-decoration:underline}
+	.btnClose2 a:hover {text-decoration:none} 
+	.popupInne2r{width:100%;}
+	.popupInner2 ul{background:url(../images/bgd_line_04.gif) 0 100% repeat-x #fff; width:100%; overflow:hidden; border-bottom:#ddd solid 1px; border-top:#ddd solid 1px; height:23px; margin-bottom:15px;}
+	.popupInner2 fieldset p{width:100%; display:block; overflow:hidden; margin-bottom:10px;}
+	.popupInner2 fieldset label{display:block; float:left; width:100px; margin-right:5px;}
+	.popupInner2 fieldset input{float:left; width:370px; border:#b5b5b5 solid 1px; border-top:#dbdadb solid 1px;}
+
+
+	/******************/
+	.contType3{width:100%; overflow:hidden;}
+	.listFile{width:35%; float:left; margin-left:210px;}
+	.listFile li{ border-bottom: 1px dotted #ccc; padding:10px 0}
+	.listFile li a{color:#555}
+	.listFile li a:hover{color:#CC6600}
+	.listFile .btnDelete{float:right; margin-left:10px; text-decoration:underline}
+	.listFile .btnDelete:hover{text-decoration:none;}
+	
+	.listPhoto{width:75%; float:left; margin-left:210px;}
+	.listPhoto li{display:block; float:left; margin:0 10px 10px 0; position:relative; height:100px}
+	.listPhoto .btnDelete{background:#000; position:absolute; right:0; bottom:0; padding:2px 8px; color:#fff;}
+	
+/* Multi upload*/	
+	div.multiupload{
+	border:1px outset gray;
+	float:left;
+	padding:3px;
+	background:#eee;
+	}
+	div.multiupload div.list{
+		border:1px inset gray;
+		background: #fff;
+	}
+	div.multiupload div.list div.item{
+		margin:1px;
+		background: #eee;
+	}
+	div.multiupload div.list div.item:hover{
+		background: #ccc;
+	}
+	div.multiupload div.list img{
+		float:left;
+		margin: 3px;
+		cursor:pointer;
+	}
+
+/* icons */
+.icons { width: 100%; overflow:hidden;  } 
+.icons ul {width:100%; overflow: hidden; margin-bottom: 20px;}
+.icons li { width: 80px; overflow:hidden; display:block; float:left; margin-right: 68px; }
+.icons li a { color:#555; }
+.icons li a:hover { color:#CC6600; text-decoration:none; }
+.icons li.last { margin-right: 0; }
+#content .icons li p { margin-bottom: 25px; }
+
+.center { text-align:center; padding-left:21px; padding-bottom:5px}
+.right {text-align:right}

@@ -1,0 +1,87 @@
+{if $result_code}<div class="message">{$amessages.result_code.$result_code}</div>{/if}
+{if $error_code}<div class="message2">{$amessages.error_code.$error_code}</div>{/if}
+{if $error}
+{if $error.invalid || $error.message}
+{assign var=input value=$error.INPUT}
+<div class="errorBox">
+<h2>{$locale->msg('error_notes')}:</h2>
+<ul class="listStyle">
+{foreach from=$input item=field}
+{if $field.error}<li>{$field.message}</li>{/if}
+{/foreach}
+<li>{$error.message}</li>
+</ul>
+</div>
+{/if}
+{/if}
+<div class="formContent">
+<h1>{$locale->msg('add_new_campaign')}</h1>
+<form action="/{$aScript}" method="post" name="formAdd" id="formAdd" enctype="multipart/form-data" >
+<fieldset>
+<p><strong>* {$locale->msg('required_fields')}</strong></p>
+<p{if isset($error.INPUT) && $error.INPUT.name.error} class="errormsg"{/if}><label for="name">* Tên chiến dịch: </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.name.value}{/if}" name="name" id="name" /></p>
+<p{if isset($error.INPUT) && $error.INPUT.email.error} class="errormsg"{/if}><label for="email"> From email: </label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.email.value}{/if}" name="email" id="email" /></p>
+
+<p><label for="id_email"> Mẫu mail:</label>
+<select name="id_email" id="id_email">
+{$comboEmail}
+</select></p>
+{literal}
+<script>
+	  function groupCustomer()
+      {
+      var list = document.getElementById('group_customer');
+      for(var i = 0; i < list.options.length; ++i)
+         {
+            list.options[i].selected = true;
+         }
+      }
+      </script>
+{/literal}
+
+<p><label for="group_customer">Nhóm khách hàng:</label>
+<select name="group_customer[]" id="group_customer" multiple="multiple" class="multiple">
+{$listGroup}
+</select>
+<input type="button" id="select_all" value="Select all" onclick="groupCustomer()" class="mini" style="width:70px"/>
+
+</p>
+
+<p{if isset($error.INPUT) && $error.INPUT.appointment.error} class="errormsg"{/if}><label for="appointment"> Ngày gửi: </label>
+<input type="text" class="small" value="{if isset($error.INPUT)}{$error.INPUT.appointment.value}{/if}" name="appointment" id="txtNgayDen" /><a id="schedule-ngayden-img" class="calendars" href="#" title=""><img src="/{$templatePath}/{$userTemplate}/images/icon_calendar.png" width="15" height="15" alt="" /></a></p>
+<br />
+<p class="btn">
+<input type="hidden" name="op" value="newsletter" />
+<input type="hidden" name="act" value="campaign" />
+<input type="hidden" name="mod" value="add" />
+<input type="hidden" name="doo" value="submit" />
+<input type="hidden" name="sCode" value="{$sCode}_" />
+<input type="hidden" name="lang" value="{$lang}" />
+<input type="submit" value="{$locale->msg('button_submit')}" title="{$locale->msg('button_submit')}" name="btnSubmit" />
+<input type="reset" value="{$locale->msg('button_reset')}" title="{$locale->msg('button_reset')}" name="btnReset" />
+<input type="button" onClick="javascript:formSubmit('formAdd','list','cancel',0);" value="{$locale->msg('button_cancel')}" title="{$locale->msg('button_cancel')}" name="btnCancel" />
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+<div class="tableContent hidden"><center><img src="/{$templatePath}/{$userTemplate}/images/loading.gif" width="36" height="36" alt="Loading" /></center></div>
+<div class="tableContent hidden"><center><img src="/{$templatePath}/{$userTemplate}/images/loading.gif" width="36" height="36" alt="Loading" /></center></div>
+<div class="tableContent hidden">
+<div class="contType"><h2>{$locale->msg('notes')}:</h2>{$locale->msg('notes_clean_trash')}</div>
+<form name="formClean" id="formClean" action="/{$aScript}" method="post">
+<fieldset>
+<input type="hidden" name="op" value="newsletter" />
+<input type="hidden" name="act" value="campaign" />
+<input type="hidden" name="mod" value="list" />
+<input type="hidden" name="doo" value="cleantrash" />
+<input type="hidden" name="lang" value="{$lang}" />
+<p class="btn"><input type="submit" value="{$locale->msg('button_ok')}" title="{$locale->msg('button_ok')}" name="btnSubmit2" />
+<input type="button" onClick="javascript:formSubmit('formClean','list','cancel',0);" value="{$locale->msg('button_cancel')}" title="{$locale->msg('button_cancel')}" name="btnCancel" />
+</p>
+</fieldset>
+</form>
+</div>
+</div>
